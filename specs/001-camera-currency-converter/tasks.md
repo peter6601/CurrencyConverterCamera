@@ -35,21 +35,21 @@
 
 ### Sanity Check & Project Verification
 
-- [ ] T001 Create Xcode project from SwiftUI template with name `CurrencyConverterCamera`
-- [ ] T002 Add Unit Test target `CurrencyConverterCameraTests` to project
-- [ ] T003 Add Integration Test target `CurrencyConverterCameraIntegrationTests` (optional Phase 0, required by Phase 6)
-- [ ] T004 Add UI Test target `CurrencyConverterCameraUITests` to project
-- [ ] T005 [P] Create folder structure in `CurrencyConverterCamera/App/`, `Models/`, `ViewModels/`, `Views/`, `Services/`, `Utilities/`, `Resources/`
-- [ ] T006 [P] Create test folder structure: `CurrencyConverterCameraTests/Models/`, `ViewModels/`, `Services/`, `Resources/TestImages/`
-- [ ] T007 Create first sanity test in `CurrencyConverterCameraTests/ExampleTests.swift` (1 + 1 = 2, project compiles)
-- [ ] T008 Configure `.gitignore` for Xcode (Pods/, .swiftpm/, etc.)
-- [ ] T009 Create `CurrencyConverterCamera/App/CurrencyConverterCameraApp.swift` app entry point
+- [x] T001 Create Xcode project from SwiftUI template with name `CurrencyConverterCamera`
+- [x] T002 Add Unit Test target `CurrencyConverterCameraTests` to project
+- [x] T003 Add Integration Test target `CurrencyConverterCameraIntegrationTests` (optional Phase 0, required by Phase 6)
+- [x] T004 Add UI Test target `CurrencyConverterCameraUITests` to project
+- [x] T005 [P] Create folder structure in `CurrencyConverterCamera/App/`, `Models/`, `ViewModels/`, `Views/`, `Services/`, `Utilities/`, `Resources/`
+- [x] T006 [P] Create test folder structure: `CurrencyConverterCameraTests/Models/`, `ViewModels/`, `Services/`, `Resources/TestImages/`
+- [x] T007 Create first sanity test in `CurrencyConverterCameraTests/ExampleTests.swift` (1 + 1 = 2, project compiles)
+- [x] T008 Configure `.gitignore` for Xcode (Pods/, .swiftpm/, etc.)
+- [x] T009 Create `CurrencyConverterCamera/App/CurrencyConverterCameraApp.swift` app entry point
 
 **Gate Checkpoint**:
-- [ ] T010 Run `xcodebuild test` → all tests pass (green)
-- [ ] T011 Launch simulator → app displays blank screen without errors
-- [ ] T012 Verify git repository initialized with proper .gitignore
-- [ ] T013 Commit Stage 0 completion: `git commit -m "[Stage 0] feat: project initialization and test targets"`
+- [x] T010 Run `xcodebuild test` → all tests pass (green)
+- [x] T011 Launch simulator → app displays blank screen without errors
+- [x] T012 Verify git repository initialized with proper .gitignore
+- [x] T013 Commit Stage 0 completion: `git commit -m "[Stage 0] feat: project initialization and test targets"`
 
 ---
 
