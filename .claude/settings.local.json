@@ -3,7 +3,8 @@
     "allow": [
       "Bash(cd /Users/dindin/Documents/iOS Project/PriceConvert && git fetch:*)",
       "Bash(cd:*)",
-      "Bash(.specify/scripts/bash/update-agent-context.sh claude)"
+      "Bash(.specify/scripts/bash/update-agent-context.sh claude)",
+      "SlashCommand(/speckit.tasks product_spec.md)"
     ],
     "deny": [],
     "ask": []
