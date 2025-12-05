@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "6E39556C-5E55-4D20-8B76-0D968044947B",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:CurrencyConverterCamera.xcodeproj",
+      "identifier" : "2DE15DDA2EDF344A006EDD45",
+      "name" : "CurrencyConverterCamera"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:CurrencyConverterCamera.xcodeproj",
+        "identifier" : "2DE15DE72EDF344C006EDD45",
+        "name" : "CurrencyConverterCameraTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:CurrencyConverterCamera.xcodeproj",
+        "identifier" : "2DE15DF12EDF344C006EDD45",
+        "name" : "CurrencyConverterCameraUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

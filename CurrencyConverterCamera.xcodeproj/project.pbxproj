@@ -1,0 +1,984 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2DA87CB72EE0012200C32679 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87CA22EE0012200C32679 /* StorageService.swift */; };
+		2DA87CB82EE0012200C32679 /* ConversionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87C9C2EE0012200C32679 /* ConversionResult.swift */; };
+		2DA87CB92EE0012200C32679 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87CAA2EE0012200C32679 /* SettingsViewModel.swift */; };
+		2DA87CBA2EE0012200C32679 /* CameraFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87C9A2EE0012200C32679 /* CameraFrame.swift */; };
+		2DA87CBB2EE0012200C32679 /* ConversionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87CA12EE0012200C32679 /* ConversionEngine.swift */; };
+		2DA87CBC2EE0012200C32679 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87CA92EE0012200C32679 /* CameraViewModel.swift */; };
+		2DA87CBD2EE0012200C32679 /* VisionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87CA32EE0012200C32679 /* VisionService.swift */; };
+		2DA87CBF2EE0012200C32679 /* CurrencySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87C9D2EE0012200C32679 /* CurrencySettings.swift */; };
+		2DA87CC02EE0012200C32679 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87CA62EE0012200C32679 /* Extensions.swift */; };
+		2DA87CC12EE0012200C32679 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87CA52EE0012200C32679 /* Constants.swift */; };
+		2DA87CC22EE0012200C32679 /* CurrencyConverterCameraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87CB42EE0012200C32679 /* CurrencyConverterCameraApp.swift */; };
+		2DA87CC52EE0012200C32679 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87CA72EE0012200C32679 /* Logger.swift */; };
+		2DA87CC72EE0012200C32679 /* DetectedNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87C9E2EE0012200C32679 /* DetectedNumber.swift */; };
+		2DA87CC82EE0012200C32679 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87CB32EE0012200C32679 /* ContentView.swift */; };
+		2DA87CC92EE0012200C32679 /* ConversionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87C9B2EE0012200C32679 /* ConversionRecord.swift */; };
+		2DA87CCA2EE0012200C32679 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87CA02EE0012200C32679 /* CameraManager.swift */; };
+		2DA87CCB2EE0012200C32679 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87CAC2EE0012200C32679 /* Assets.xcassets */; };
+		2DA87D222EE0018A00C32679 /* SettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87D1C2EE0018A00C32679 /* SettingsViewModelTests.swift */; };
+		2DA87D232EE0018A00C32679 /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87D162EE0018A00C32679 /* TestHelper.swift */; };
+		2DA87D252EE0018A00C32679 /* ConversionEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87D192EE0018A00C32679 /* ConversionEngineTests.swift */; };
+		2DA87D262EE0018A00C32679 /* VisionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87D1E2EE0018A00C32679 /* VisionServiceTests.swift */; };
+		2DA87D272EE0018A00C32679 /* CameraManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87D182EE0018A00C32679 /* CameraManagerTests.swift */; };
+		2DA87D282EE0018A00C32679 /* CurrencyConverterCameraTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87D202EE0018A00C32679 /* CurrencyConverterCameraTests.swift */; };
+		2DA87D292EE0018A00C32679 /* StorageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87D1D2EE0018A00C32679 /* StorageServiceTests.swift */; };
+		2DA87D2A2EE0018A00C32679 /* ModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87D1B2EE0018A00C32679 /* ModelsTests.swift */; };
+		2DA87D2C2EE007D000C32679 /* CurrencySettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87D1A2EE0018A00C32679 /* CurrencySettingsTests.swift */; };
+		2DA87D7B2EE2AACF00C32679 /* TEST_FIXES_SUMMARY.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87D7A2EE2AACF00C32679 /* TEST_FIXES_SUMMARY.md */; };
+		2DA87DDA2EE2B07D00C32679 /* DETECTION_DISPLAY_UPDATE.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DC22EE2B07D00C32679 /* DETECTION_DISPLAY_UPDATE.md */; };
+		2DA87DDB2EE2B07D00C32679 /* plan.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DB52EE2B07D00C32679 /* plan.md */; };
+		2DA87DDC2EE2B07D00C32679 /* specsdata-model.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DD22EE2B07D00C32679 /* specsdata-model.md */; };
+		2DA87DDD2EE2B07D00C32679 /* QUICK_START.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DD02EE2B07D00C32679 /* QUICK_START.md */; };
+		2DA87DDE2EE2B07D00C32679 /* PHASE_2_README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DCC2EE2B07D00C32679 /* PHASE_2_README.md */; };
+		2DA87DDF2EE2B07D00C32679 /* specsORGANIZATION_REPORT.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DD52EE2B07D00C32679 /* specsORGANIZATION_REPORT.md */; };
+		2DA87DE02EE2B07D00C32679 /* INFO_PLIST_SETUP.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DC62EE2B07D00C32679 /* INFO_PLIST_SETUP.md */; };
+		2DA87DE12EE2B07D00C32679 /* tasks.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DB92EE2B07D00C32679 /* tasks.md */; };
+		2DA87DE22EE2B07D00C32679 /* INITIALIZATION_FLOW.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DC72EE2B07D00C32679 /* INITIALIZATION_FLOW.md */; };
+		2DA87DE32EE2B07D00C32679 /* specsREADME.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DD72EE2B07D00C32679 /* specsREADME.md */; };
+		2DA87DE42EE2B07D00C32679 /* specsfixestest-fixes-summary.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DD42EE2B07D00C32679 /* specsfixestest-fixes-summary.md */; };
+		2DA87DE52EE2B07D00C32679 /* PHASE_1_SETUP.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DC82EE2B07D00C32679 /* PHASE_1_SETUP.md */; };
+		2DA87DE62EE2B07D00C32679 /* research.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DB72EE2B07D00C32679 /* research.md */; };
+		2DA87DE72EE2B07D00C32679 /* PHASE_2_COMPLETION_CHECKLIST.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DC92EE2B07D00C32679 /* PHASE_2_COMPLETION_CHECKLIST.md */; };
+		2DA87DE82EE2B07D00C32679 /* PHASE_2_INTEGRATION_GUIDE.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DCB2EE2B07D00C32679 /* PHASE_2_INTEGRATION_GUIDE.md */; };
+		2DA87DE92EE2B07D00C32679 /* product_spec.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DCF2EE2B07D00C32679 /* product_spec.md */; };
+		2DA87DEA2EE2B07D00C32679 /* specsproduct-spec.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DD62EE2B07D00C32679 /* specsproduct-spec.md */; };
+		2DA87DEB2EE2B07D00C32679 /* specsfixescamera-black-screen-fix.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DD32EE2B07D00C32679 /* specsfixescamera-black-screen-fix.md */; };
+		2DA87DEC2EE2B07D00C32679 /* PHASE_2_FILES_SUMMARY.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DCA2EE2B07D00C32679 /* PHASE_2_FILES_SUMMARY.md */; };
+		2DA87DED2EE2B07D00C32679 /* specsupdatescamera-throttling-update.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DD82EE2B07D00C32679 /* specsupdatescamera-throttling-update.md */; };
+		2DA87DEE2EE2B07D00C32679 /* FIXES_SUMMARY.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DC52EE2B07D00C32679 /* FIXES_SUMMARY.md */; };
+		2DA87DEF2EE2B07D00C32679 /* CAMERA_BLACK_SCREEN_FIX.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DBB2EE2B07D00C32679 /* CAMERA_BLACK_SCREEN_FIX.md */; };
+		2DA87DF02EE2B07D00C32679 /* data-model.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DB42EE2B07D00C32679 /* data-model.md */; };
+		2DA87DF12EE2B07D00C32679 /* CLAUDE.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DC02EE2B07D00C32679 /* CLAUDE.md */; };
+		2DA87DF22EE2B07D00C32679 /* spec.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DB82EE2B07D00C32679 /* spec.md */; };
+		2DA87DF32EE2B07D00C32679 /* quickstart.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DB62EE2B07D00C32679 /* quickstart.md */; };
+		2DA87DF42EE2B07D00C32679 /* CAMERA_THROTTLING_UPDATE.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DBD2EE2B07D00C32679 /* CAMERA_THROTTLING_UPDATE.md */; };
+		2DA87DF52EE2B07D00C32679 /* PHASE_4_IMPLEMENTATION.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DCE2EE2B07D00C32679 /* PHASE_4_IMPLEMENTATION.md */; };
+		2DA87DF62EE2B07D00C32679 /* requirements.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DB22EE2B07D00C32679 /* requirements.md */; };
+		2DA87DF72EE2B07D00C32679 /* CAMERA_FIX_QUICK_GUIDE.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DBC2EE2B07D00C32679 /* CAMERA_FIX_QUICK_GUIDE.md */; };
+		2DA87DF82EE2B07D00C32679 /* PHASE_2_TEST_COMMANDS.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87DCD2EE2B07D00C32679 /* PHASE_2_TEST_COMMANDS.md */; };
+		2DA87DF92EE2B07D00C32679 /* ExchangeRateInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87DC42EE2B07D00C32679 /* ExchangeRateInputField.swift */; };
+		2DA87DFA2EE2B07D00C32679 /* DetectionOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87DC32EE2B07D00C32679 /* DetectionOverlayView.swift */; };
+		2DA87DFB2EE2B07D00C32679 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87DBF2EE2B07D00C32679 /* CameraView.swift */; };
+		2DA87DFC2EE2B07D00C32679 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87DBE2EE2B07D00C32679 /* CameraPreviewView.swift */; };
+		2DA87DFD2EE2B07D00C32679 /* CurrencyInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87DC12EE2B07D00C32679 /* CurrencyInputField.swift */; };
+		2DA87DFE2EE2B07D00C32679 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87DD12EE2B07D00C32679 /* SettingsView.swift */; };
+		2DA87E002EE2B0D100C32679 /* InitialSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87DFF2EE2B0D100C32679 /* InitialSetupView.swift */; };
+		2DA87E022EE2B14300C32679 /* DEBUG_SAVE_BUTTON.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E012EE2B14300C32679 /* DEBUG_SAVE_BUTTON.md */; };
+		2DA87E062EE2B22900C32679 /* .gitignore2 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E052EE2B22900C32679 /* .gitignore2 */; };
+		2DA87E082EE2B28600C32679 /* GIT_COMMIT_GUIDE.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E072EE2B28600C32679 /* GIT_COMMIT_GUIDE.md */; };
+		2DA87E0A2EE2B2C000C32679 /* git-commit-sequence.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E092EE2B2C000C32679 /* git-commit-sequence.sh */; };
+		2DA87E0C2EE2B2DB00C32679 /* QUICK_START_GIT.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E0B2EE2B2DB00C32679 /* QUICK_START_GIT.md */; };
+		2DA87E0E2EE2B31400C32679 /* COMMIT_SUMMARY.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E0D2EE2B31400C32679 /* COMMIT_SUMMARY.md */; };
+		2DA87E102EE2B37100C32679 /* GIT_WORKFLOW_DIAGRAM.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E0F2EE2B37100C32679 /* GIT_WORKFLOW_DIAGRAM.md */; };
+		2DA87E122EE2B3C400C32679 /* TEST_FIXES_PRIORITY.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E112EE2B3C400C32679 /* TEST_FIXES_PRIORITY.md */; };
+		2DA87E142EE2B42200C32679 /* GIT_AND_TESTING_README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E132EE2B42200C32679 /* GIT_AND_TESTING_README.md */; };
+		2DA87E162EE2B4E100C32679 /* TEST_FIX_IMPLEMENTATION.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E152EE2B4E100C32679 /* TEST_FIX_IMPLEMENTATION.md */; };
+		2DA87E182EE2B54800C32679 /* TESTS_TO_DELETE.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E172EE2B54800C32679 /* TESTS_TO_DELETE.md */; };
+		2DA87E1A2EE2B57500C32679 /* TEST_FIX_SUMMARY.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E192EE2B57500C32679 /* TEST_FIX_SUMMARY.md */; };
+		2DA87E1C2EE2B5EA00C32679 /* DELETE_TESTS_GUIDE.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E1B2EE2B5EA00C32679 /* DELETE_TESTS_GUIDE.md */; };
+		2DA87E1E2EE2B63C00C32679 /* FIX_REMAINING_TESTS.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E1D2EE2B63C00C32679 /* FIX_REMAINING_TESTS.md */; };
+		2DA87E202EE2B68A00C32679 /* TEST_FIX_EXECUTION.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E1F2EE2B68A00C32679 /* TEST_FIX_EXECUTION.md */; };
+		2DA87E282EE2B92E00C32679 /* TEST_FIXES_COMPLETED.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E272EE2B92E00C32679 /* TEST_FIXES_COMPLETED.md */; };
+		2DA87E2A2EE2B94E00C32679 /* RUN_TESTS_NOW.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E292EE2B94E00C32679 /* RUN_TESTS_NOW.md */; };
+		2DA87E2D2EE2BAC300C32679 /* FINAL_TEST_FIX_REPORT.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E2C2EE2BAC300C32679 /* FINAL_TEST_FIX_REPORT.md */; };
+		2DA87E2F2EE2BAD400C32679 /* VERIFY_NOW.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E2E2EE2BAD400C32679 /* VERIFY_NOW.md */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2DE15DE92EDF344C006EDD45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2DE15DD32EDF344A006EDD45 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2DE15DDA2EDF344A006EDD45;
+			remoteInfo = CurrencyConverterCamera;
+		};
+		2DE15DF32EDF344C006EDD45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2DE15DD32EDF344A006EDD45 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2DE15DDA2EDF344A006EDD45;
+			remoteInfo = CurrencyConverterCamera;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2DA87C972EE0011600C32679 /* CurrencyConverterCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConverterCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2DA87C982EE0011600C32679 /* CurrencyConverterCameraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyConverterCameraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2DA87C992EE0011600C32679 /* CurrencyConverterCameraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyConverterCameraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2DA87C9A2EE0012200C32679 /* CameraFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFrame.swift; sourceTree = "<group>"; };
+		2DA87C9B2EE0012200C32679 /* ConversionRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionRecord.swift; sourceTree = "<group>"; };
+		2DA87C9C2EE0012200C32679 /* ConversionResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionResult.swift; sourceTree = "<group>"; };
+		2DA87C9D2EE0012200C32679 /* CurrencySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySettings.swift; sourceTree = "<group>"; };
+		2DA87C9E2EE0012200C32679 /* DetectedNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectedNumber.swift; sourceTree = "<group>"; };
+		2DA87CA02EE0012200C32679 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
+		2DA87CA12EE0012200C32679 /* ConversionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionEngine.swift; sourceTree = "<group>"; };
+		2DA87CA22EE0012200C32679 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		2DA87CA32EE0012200C32679 /* VisionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionService.swift; sourceTree = "<group>"; };
+		2DA87CA52EE0012200C32679 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2DA87CA62EE0012200C32679 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		2DA87CA72EE0012200C32679 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		2DA87CA92EE0012200C32679 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
+		2DA87CAA2EE0012200C32679 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		2DA87CAC2EE0012200C32679 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2DA87CB32EE0012200C32679 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2DA87CB42EE0012200C32679 /* CurrencyConverterCameraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterCameraApp.swift; sourceTree = "<group>"; };
+		2DA87D162EE0018A00C32679 /* TestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelper.swift; sourceTree = "<group>"; };
+		2DA87D182EE0018A00C32679 /* CameraManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManagerTests.swift; sourceTree = "<group>"; };
+		2DA87D192EE0018A00C32679 /* ConversionEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionEngineTests.swift; sourceTree = "<group>"; };
+		2DA87D1A2EE0018A00C32679 /* CurrencySettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySettingsTests.swift; sourceTree = "<group>"; };
+		2DA87D1B2EE0018A00C32679 /* ModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsTests.swift; sourceTree = "<group>"; };
+		2DA87D1C2EE0018A00C32679 /* SettingsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelTests.swift; sourceTree = "<group>"; };
+		2DA87D1D2EE0018A00C32679 /* StorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceTests.swift; sourceTree = "<group>"; };
+		2DA87D1E2EE0018A00C32679 /* VisionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionServiceTests.swift; sourceTree = "<group>"; };
+		2DA87D202EE0018A00C32679 /* CurrencyConverterCameraTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterCameraTests.swift; sourceTree = "<group>"; };
+		2DA87D7A2EE2AACF00C32679 /* TEST_FIXES_SUMMARY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TEST_FIXES_SUMMARY.md; sourceTree = "<group>"; };
+		2DA87DB22EE2B07D00C32679 /* requirements.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = requirements.md; sourceTree = "<group>"; };
+		2DA87DB42EE2B07D00C32679 /* data-model.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "data-model.md"; sourceTree = "<group>"; };
+		2DA87DB52EE2B07D00C32679 /* plan.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = plan.md; sourceTree = "<group>"; };
+		2DA87DB62EE2B07D00C32679 /* quickstart.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = quickstart.md; sourceTree = "<group>"; };
+		2DA87DB72EE2B07D00C32679 /* research.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = research.md; sourceTree = "<group>"; };
+		2DA87DB82EE2B07D00C32679 /* spec.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = spec.md; sourceTree = "<group>"; };
+		2DA87DB92EE2B07D00C32679 /* tasks.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = tasks.md; sourceTree = "<group>"; };
+		2DA87DBB2EE2B07D00C32679 /* CAMERA_BLACK_SCREEN_FIX.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CAMERA_BLACK_SCREEN_FIX.md; sourceTree = "<group>"; };
+		2DA87DBC2EE2B07D00C32679 /* CAMERA_FIX_QUICK_GUIDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CAMERA_FIX_QUICK_GUIDE.md; sourceTree = "<group>"; };
+		2DA87DBD2EE2B07D00C32679 /* CAMERA_THROTTLING_UPDATE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CAMERA_THROTTLING_UPDATE.md; sourceTree = "<group>"; };
+		2DA87DBE2EE2B07D00C32679 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		2DA87DBF2EE2B07D00C32679 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		2DA87DC02EE2B07D00C32679 /* CLAUDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CLAUDE.md; sourceTree = "<group>"; };
+		2DA87DC12EE2B07D00C32679 /* CurrencyInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyInputField.swift; sourceTree = "<group>"; };
+		2DA87DC22EE2B07D00C32679 /* DETECTION_DISPLAY_UPDATE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DETECTION_DISPLAY_UPDATE.md; sourceTree = "<group>"; };
+		2DA87DC32EE2B07D00C32679 /* DetectionOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectionOverlayView.swift; sourceTree = "<group>"; };
+		2DA87DC42EE2B07D00C32679 /* ExchangeRateInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateInputField.swift; sourceTree = "<group>"; };
+		2DA87DC52EE2B07D00C32679 /* FIXES_SUMMARY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = FIXES_SUMMARY.md; sourceTree = "<group>"; };
+		2DA87DC62EE2B07D00C32679 /* INFO_PLIST_SETUP.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = INFO_PLIST_SETUP.md; sourceTree = "<group>"; };
+		2DA87DC72EE2B07D00C32679 /* INITIALIZATION_FLOW.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = INITIALIZATION_FLOW.md; sourceTree = "<group>"; };
+		2DA87DC82EE2B07D00C32679 /* PHASE_1_SETUP.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PHASE_1_SETUP.md; sourceTree = "<group>"; };
+		2DA87DC92EE2B07D00C32679 /* PHASE_2_COMPLETION_CHECKLIST.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PHASE_2_COMPLETION_CHECKLIST.md; sourceTree = "<group>"; };
+		2DA87DCA2EE2B07D00C32679 /* PHASE_2_FILES_SUMMARY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PHASE_2_FILES_SUMMARY.md; sourceTree = "<group>"; };
+		2DA87DCB2EE2B07D00C32679 /* PHASE_2_INTEGRATION_GUIDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PHASE_2_INTEGRATION_GUIDE.md; sourceTree = "<group>"; };
+		2DA87DCC2EE2B07D00C32679 /* PHASE_2_README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PHASE_2_README.md; sourceTree = "<group>"; };
+		2DA87DCD2EE2B07D00C32679 /* PHASE_2_TEST_COMMANDS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PHASE_2_TEST_COMMANDS.md; sourceTree = "<group>"; };
+		2DA87DCE2EE2B07D00C32679 /* PHASE_4_IMPLEMENTATION.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PHASE_4_IMPLEMENTATION.md; sourceTree = "<group>"; };
+		2DA87DCF2EE2B07D00C32679 /* product_spec.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = product_spec.md; sourceTree = "<group>"; };
+		2DA87DD02EE2B07D00C32679 /* QUICK_START.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = QUICK_START.md; sourceTree = "<group>"; };
+		2DA87DD12EE2B07D00C32679 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2DA87DD22EE2B07D00C32679 /* specsdata-model.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "specsdata-model.md"; sourceTree = "<group>"; };
+		2DA87DD32EE2B07D00C32679 /* specsfixescamera-black-screen-fix.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "specsfixescamera-black-screen-fix.md"; sourceTree = "<group>"; };
+		2DA87DD42EE2B07D00C32679 /* specsfixestest-fixes-summary.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "specsfixestest-fixes-summary.md"; sourceTree = "<group>"; };
+		2DA87DD52EE2B07D00C32679 /* specsORGANIZATION_REPORT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = specsORGANIZATION_REPORT.md; sourceTree = "<group>"; };
+		2DA87DD62EE2B07D00C32679 /* specsproduct-spec.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "specsproduct-spec.md"; sourceTree = "<group>"; };
+		2DA87DD72EE2B07D00C32679 /* specsREADME.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = specsREADME.md; sourceTree = "<group>"; };
+		2DA87DD82EE2B07D00C32679 /* specsupdatescamera-throttling-update.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "specsupdatescamera-throttling-update.md"; sourceTree = "<group>"; };
+		2DA87DFF2EE2B0D100C32679 /* InitialSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupView.swift; sourceTree = "<group>"; };
+		2DA87E012EE2B14300C32679 /* DEBUG_SAVE_BUTTON.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DEBUG_SAVE_BUTTON.md; sourceTree = "<group>"; };
+		2DA87E052EE2B22900C32679 /* .gitignore2 */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore2; sourceTree = "<group>"; };
+		2DA87E072EE2B28600C32679 /* GIT_COMMIT_GUIDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = GIT_COMMIT_GUIDE.md; sourceTree = "<group>"; };
+		2DA87E092EE2B2C000C32679 /* git-commit-sequence.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "git-commit-sequence.sh"; sourceTree = "<group>"; };
+		2DA87E0B2EE2B2DB00C32679 /* QUICK_START_GIT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = QUICK_START_GIT.md; sourceTree = "<group>"; };
+		2DA87E0D2EE2B31400C32679 /* COMMIT_SUMMARY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = COMMIT_SUMMARY.md; sourceTree = "<group>"; };
+		2DA87E0F2EE2B37100C32679 /* GIT_WORKFLOW_DIAGRAM.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = GIT_WORKFLOW_DIAGRAM.md; sourceTree = "<group>"; };
+		2DA87E112EE2B3C400C32679 /* TEST_FIXES_PRIORITY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TEST_FIXES_PRIORITY.md; sourceTree = "<group>"; };
+		2DA87E132EE2B42200C32679 /* GIT_AND_TESTING_README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = GIT_AND_TESTING_README.md; sourceTree = "<group>"; };
+		2DA87E152EE2B4E100C32679 /* TEST_FIX_IMPLEMENTATION.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TEST_FIX_IMPLEMENTATION.md; sourceTree = "<group>"; };
+		2DA87E172EE2B54800C32679 /* TESTS_TO_DELETE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TESTS_TO_DELETE.md; sourceTree = "<group>"; };
+		2DA87E192EE2B57500C32679 /* TEST_FIX_SUMMARY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TEST_FIX_SUMMARY.md; sourceTree = "<group>"; };
+		2DA87E1B2EE2B5EA00C32679 /* DELETE_TESTS_GUIDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DELETE_TESTS_GUIDE.md; sourceTree = "<group>"; };
+		2DA87E1D2EE2B63C00C32679 /* FIX_REMAINING_TESTS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = FIX_REMAINING_TESTS.md; sourceTree = "<group>"; };
+		2DA87E1F2EE2B68A00C32679 /* TEST_FIX_EXECUTION.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TEST_FIX_EXECUTION.md; sourceTree = "<group>"; };
+		2DA87E212EE2B6A100C32679 /* QUICK_FIX_CARD.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = QUICK_FIX_CARD.md; sourceTree = "<group>"; };
+		2DA87E272EE2B92E00C32679 /* TEST_FIXES_COMPLETED.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TEST_FIXES_COMPLETED.md; sourceTree = "<group>"; };
+		2DA87E292EE2B94E00C32679 /* RUN_TESTS_NOW.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = RUN_TESTS_NOW.md; sourceTree = "<group>"; };
+		2DA87E2B2EE2B9DE00C32679 /* CurrencyConverterCamera.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = file; path = CurrencyConverterCamera.xctestplan; sourceTree = "<group>"; };
+		2DA87E2C2EE2BAC300C32679 /* FINAL_TEST_FIX_REPORT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = FINAL_TEST_FIX_REPORT.md; sourceTree = "<group>"; };
+		2DA87E2E2EE2BAD400C32679 /* VERIFY_NOW.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = VERIFY_NOW.md; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2DE15DD82EDF344A006EDD45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DE15DE52EDF344C006EDD45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DE15DEF2EDF344C006EDD45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2DA87C9F2EE0012200C32679 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2DA87C9A2EE0012200C32679 /* CameraFrame.swift */,
+				2DA87C9B2EE0012200C32679 /* ConversionRecord.swift */,
+				2DA87C9C2EE0012200C32679 /* ConversionResult.swift */,
+				2DA87C9D2EE0012200C32679 /* CurrencySettings.swift */,
+				2DA87C9E2EE0012200C32679 /* DetectedNumber.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		2DA87CA42EE0012200C32679 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2DA87CA02EE0012200C32679 /* CameraManager.swift */,
+				2DA87CA12EE0012200C32679 /* ConversionEngine.swift */,
+				2DA87CA22EE0012200C32679 /* StorageService.swift */,
+				2DA87CA32EE0012200C32679 /* VisionService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		2DA87CA82EE0012200C32679 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				2DA87CA52EE0012200C32679 /* Constants.swift */,
+				2DA87CA62EE0012200C32679 /* Extensions.swift */,
+				2DA87CA72EE0012200C32679 /* Logger.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		2DA87CAB2EE0012200C32679 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				2DA87CA92EE0012200C32679 /* CameraViewModel.swift */,
+				2DA87CAA2EE0012200C32679 /* SettingsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		2DA87CB22EE0012200C32679 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2DA87DBE2EE2B07D00C32679 /* CameraPreviewView.swift */,
+				2DA87DBF2EE2B07D00C32679 /* CameraView.swift */,
+				2DA87DC12EE2B07D00C32679 /* CurrencyInputField.swift */,
+				2DA87DC32EE2B07D00C32679 /* DetectionOverlayView.swift */,
+				2DA87DC42EE2B07D00C32679 /* ExchangeRateInputField.swift */,
+				2DA87DD12EE2B07D00C32679 /* SettingsView.swift */,
+				2DA87DFF2EE2B0D100C32679 /* InitialSetupView.swift */,
+				2DA87CAC2EE0012200C32679 /* Assets.xcassets */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2DA87CB52EE0012200C32679 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				2DA87C9F2EE0012200C32679 /* Models */,
+				2DA87CA42EE0012200C32679 /* Services */,
+				2DA87CA82EE0012200C32679 /* Utilities */,
+				2DA87CAB2EE0012200C32679 /* ViewModels */,
+				2DA87CB22EE0012200C32679 /* Views */,
+				2DA87CB32EE0012200C32679 /* ContentView.swift */,
+				2DA87CB42EE0012200C32679 /* CurrencyConverterCameraApp.swift */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		2DA87D172EE0018A00C32679 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2DA87D162EE0018A00C32679 /* TestHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		2DA87D1F2EE0018A00C32679 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				2DA87D182EE0018A00C32679 /* CameraManagerTests.swift */,
+				2DA87D192EE0018A00C32679 /* ConversionEngineTests.swift */,
+				2DA87D1A2EE0018A00C32679 /* CurrencySettingsTests.swift */,
+				2DA87D1B2EE0018A00C32679 /* ModelsTests.swift */,
+				2DA87D1C2EE0018A00C32679 /* SettingsViewModelTests.swift */,
+				2DA87D1D2EE0018A00C32679 /* StorageServiceTests.swift */,
+				2DA87D1E2EE0018A00C32679 /* VisionServiceTests.swift */,
+				2DA87D7A2EE2AACF00C32679 /* TEST_FIXES_SUMMARY.md */,
+				2DA87E272EE2B92E00C32679 /* TEST_FIXES_COMPLETED.md */,
+				2DA87E292EE2B94E00C32679 /* RUN_TESTS_NOW.md */,
+				2DA87E2C2EE2BAC300C32679 /* FINAL_TEST_FIX_REPORT.md */,
+				2DA87E2E2EE2BAD400C32679 /* VERIFY_NOW.md */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		2DA87D212EE0018A00C32679 /* CurrencyConverterCameraTests */ = {
+			isa = PBXGroup;
+			children = (
+				2DA87D172EE0018A00C32679 /* Helpers */,
+				2DA87D1F2EE0018A00C32679 /* Tests */,
+				2DA87D202EE0018A00C32679 /* CurrencyConverterCameraTests.swift */,
+			);
+			path = CurrencyConverterCameraTests;
+			sourceTree = "<group>";
+		};
+		2DA87DB32EE2B07D00C32679 /* checklists */ = {
+			isa = PBXGroup;
+			children = (
+				2DA87DB22EE2B07D00C32679 /* requirements.md */,
+			);
+			path = checklists;
+			sourceTree = "<group>";
+		};
+		2DA87DBA2EE2B07D00C32679 /* 001-camera-currency-converter */ = {
+			isa = PBXGroup;
+			children = (
+				2DA87DB32EE2B07D00C32679 /* checklists */,
+				2DA87DB42EE2B07D00C32679 /* data-model.md */,
+				2DA87DB52EE2B07D00C32679 /* plan.md */,
+				2DA87DB62EE2B07D00C32679 /* quickstart.md */,
+				2DA87DB72EE2B07D00C32679 /* research.md */,
+				2DA87DB82EE2B07D00C32679 /* spec.md */,
+				2DA87DB92EE2B07D00C32679 /* tasks.md */,
+			);
+			path = "001-camera-currency-converter";
+			sourceTree = "<group>";
+		};
+		2DA87DD92EE2B07D00C32679 /* Specs */ = {
+			isa = PBXGroup;
+			children = (
+				2DA87DBA2EE2B07D00C32679 /* 001-camera-currency-converter */,
+				2DA87DBB2EE2B07D00C32679 /* CAMERA_BLACK_SCREEN_FIX.md */,
+				2DA87DBC2EE2B07D00C32679 /* CAMERA_FIX_QUICK_GUIDE.md */,
+				2DA87DBD2EE2B07D00C32679 /* CAMERA_THROTTLING_UPDATE.md */,
+				2DA87DC02EE2B07D00C32679 /* CLAUDE.md */,
+				2DA87DC22EE2B07D00C32679 /* DETECTION_DISPLAY_UPDATE.md */,
+				2DA87DC52EE2B07D00C32679 /* FIXES_SUMMARY.md */,
+				2DA87DC62EE2B07D00C32679 /* INFO_PLIST_SETUP.md */,
+				2DA87DC72EE2B07D00C32679 /* INITIALIZATION_FLOW.md */,
+				2DA87DC82EE2B07D00C32679 /* PHASE_1_SETUP.md */,
+				2DA87DC92EE2B07D00C32679 /* PHASE_2_COMPLETION_CHECKLIST.md */,
+				2DA87DCA2EE2B07D00C32679 /* PHASE_2_FILES_SUMMARY.md */,
+				2DA87DCB2EE2B07D00C32679 /* PHASE_2_INTEGRATION_GUIDE.md */,
+				2DA87DCC2EE2B07D00C32679 /* PHASE_2_README.md */,
+				2DA87DCD2EE2B07D00C32679 /* PHASE_2_TEST_COMMANDS.md */,
+				2DA87DCE2EE2B07D00C32679 /* PHASE_4_IMPLEMENTATION.md */,
+				2DA87DCF2EE2B07D00C32679 /* product_spec.md */,
+				2DA87DD02EE2B07D00C32679 /* QUICK_START.md */,
+				2DA87DD22EE2B07D00C32679 /* specsdata-model.md */,
+				2DA87DD32EE2B07D00C32679 /* specsfixescamera-black-screen-fix.md */,
+				2DA87DD42EE2B07D00C32679 /* specsfixestest-fixes-summary.md */,
+				2DA87DD52EE2B07D00C32679 /* specsORGANIZATION_REPORT.md */,
+				2DA87DD62EE2B07D00C32679 /* specsproduct-spec.md */,
+				2DA87DD72EE2B07D00C32679 /* specsREADME.md */,
+				2DA87DD82EE2B07D00C32679 /* specsupdatescamera-throttling-update.md */,
+				2DA87E012EE2B14300C32679 /* DEBUG_SAVE_BUTTON.md */,
+				2DA87E072EE2B28600C32679 /* GIT_COMMIT_GUIDE.md */,
+				2DA87E092EE2B2C000C32679 /* git-commit-sequence.sh */,
+				2DA87E0B2EE2B2DB00C32679 /* QUICK_START_GIT.md */,
+				2DA87E0D2EE2B31400C32679 /* COMMIT_SUMMARY.md */,
+				2DA87E0F2EE2B37100C32679 /* GIT_WORKFLOW_DIAGRAM.md */,
+				2DA87E112EE2B3C400C32679 /* TEST_FIXES_PRIORITY.md */,
+				2DA87E132EE2B42200C32679 /* GIT_AND_TESTING_README.md */,
+				2DA87E152EE2B4E100C32679 /* TEST_FIX_IMPLEMENTATION.md */,
+				2DA87E172EE2B54800C32679 /* TESTS_TO_DELETE.md */,
+				2DA87E192EE2B57500C32679 /* TEST_FIX_SUMMARY.md */,
+				2DA87E1B2EE2B5EA00C32679 /* DELETE_TESTS_GUIDE.md */,
+				2DA87E1D2EE2B63C00C32679 /* FIX_REMAINING_TESTS.md */,
+				2DA87E1F2EE2B68A00C32679 /* TEST_FIX_EXECUTION.md */,
+			);
+			path = Specs;
+			sourceTree = "<group>";
+		};
+		2DE15DD22EDF344A006EDD45 = {
+			isa = PBXGroup;
+			children = (
+				2DA87E2B2EE2B9DE00C32679 /* CurrencyConverterCamera.xctestplan */,
+				2DA87E052EE2B22900C32679 /* .gitignore2 */,
+				2DA87DD92EE2B07D00C32679 /* Specs */,
+				2DA87CB52EE0012200C32679 /* Product */,
+				2DA87D212EE0018A00C32679 /* CurrencyConverterCameraTests */,
+				2DA87C972EE0011600C32679 /* CurrencyConverterCamera.app */,
+				2DA87C982EE0011600C32679 /* CurrencyConverterCameraTests.xctest */,
+				2DA87C992EE0011600C32679 /* CurrencyConverterCameraUITests.xctest */,
+				2DA87E212EE2B6A100C32679 /* QUICK_FIX_CARD.md */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2DE15DDA2EDF344A006EDD45 /* CurrencyConverterCamera */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2DE15DFC2EDF344C006EDD45 /* Build configuration list for PBXNativeTarget "CurrencyConverterCamera" */;
+			buildPhases = (
+				2DE15DD72EDF344A006EDD45 /* Sources */,
+				2DE15DD82EDF344A006EDD45 /* Frameworks */,
+				2DE15DD92EDF344A006EDD45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CurrencyConverterCamera;
+			productName = CurrencyConverterCamera;
+			productReference = 2DA87C972EE0011600C32679 /* CurrencyConverterCamera.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2DE15DE72EDF344C006EDD45 /* CurrencyConverterCameraTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2DE15DFF2EDF344C006EDD45 /* Build configuration list for PBXNativeTarget "CurrencyConverterCameraTests" */;
+			buildPhases = (
+				2DE15DE42EDF344C006EDD45 /* Sources */,
+				2DE15DE52EDF344C006EDD45 /* Frameworks */,
+				2DE15DE62EDF344C006EDD45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2DE15DEA2EDF344C006EDD45 /* PBXTargetDependency */,
+			);
+			name = CurrencyConverterCameraTests;
+			productName = CurrencyConverterCameraTests;
+			productReference = 2DA87C982EE0011600C32679 /* CurrencyConverterCameraTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2DE15DF12EDF344C006EDD45 /* CurrencyConverterCameraUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2DE15E022EDF344C006EDD45 /* Build configuration list for PBXNativeTarget "CurrencyConverterCameraUITests" */;
+			buildPhases = (
+				2DE15DEE2EDF344C006EDD45 /* Sources */,
+				2DE15DEF2EDF344C006EDD45 /* Frameworks */,
+				2DE15DF02EDF344C006EDD45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2DE15DF42EDF344C006EDD45 /* PBXTargetDependency */,
+			);
+			name = CurrencyConverterCameraUITests;
+			productName = CurrencyConverterCameraUITests;
+			productReference = 2DA87C992EE0011600C32679 /* CurrencyConverterCameraUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2DE15DD32EDF344A006EDD45 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2610;
+				LastUpgradeCheck = 2610;
+				TargetAttributes = {
+					2DE15DDA2EDF344A006EDD45 = {
+						CreatedOnToolsVersion = 26.1;
+						LastSwiftMigration = 2610;
+					};
+					2DE15DE72EDF344C006EDD45 = {
+						CreatedOnToolsVersion = 26.1;
+						TestTargetID = 2DE15DDA2EDF344A006EDD45;
+					};
+					2DE15DF12EDF344C006EDD45 = {
+						CreatedOnToolsVersion = 26.1;
+						TestTargetID = 2DE15DDA2EDF344A006EDD45;
+					};
+				};
+			};
+			buildConfigurationList = 2DE15DD62EDF344A006EDD45 /* Build configuration list for PBXProject "CurrencyConverterCamera" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2DE15DD22EDF344A006EDD45;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 2DE15DD22EDF344A006EDD45;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2DE15DDA2EDF344A006EDD45 /* CurrencyConverterCamera */,
+				2DE15DE72EDF344C006EDD45 /* CurrencyConverterCameraTests */,
+				2DE15DF12EDF344C006EDD45 /* CurrencyConverterCameraUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2DE15DD92EDF344A006EDD45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DA87DDA2EE2B07D00C32679 /* DETECTION_DISPLAY_UPDATE.md in Resources */,
+				2DA87E1E2EE2B63C00C32679 /* FIX_REMAINING_TESTS.md in Resources */,
+				2DA87DDB2EE2B07D00C32679 /* plan.md in Resources */,
+				2DA87DDC2EE2B07D00C32679 /* specsdata-model.md in Resources */,
+				2DA87E082EE2B28600C32679 /* GIT_COMMIT_GUIDE.md in Resources */,
+				2DA87DDD2EE2B07D00C32679 /* QUICK_START.md in Resources */,
+				2DA87E062EE2B22900C32679 /* .gitignore2 in Resources */,
+				2DA87DDE2EE2B07D00C32679 /* PHASE_2_README.md in Resources */,
+				2DA87DDF2EE2B07D00C32679 /* specsORGANIZATION_REPORT.md in Resources */,
+				2DA87DE02EE2B07D00C32679 /* INFO_PLIST_SETUP.md in Resources */,
+				2DA87DE12EE2B07D00C32679 /* tasks.md in Resources */,
+				2DA87DE22EE2B07D00C32679 /* INITIALIZATION_FLOW.md in Resources */,
+				2DA87DE32EE2B07D00C32679 /* specsREADME.md in Resources */,
+				2DA87E122EE2B3C400C32679 /* TEST_FIXES_PRIORITY.md in Resources */,
+				2DA87E0E2EE2B31400C32679 /* COMMIT_SUMMARY.md in Resources */,
+				2DA87DE42EE2B07D00C32679 /* specsfixestest-fixes-summary.md in Resources */,
+				2DA87DE52EE2B07D00C32679 /* PHASE_1_SETUP.md in Resources */,
+				2DA87DE62EE2B07D00C32679 /* research.md in Resources */,
+				2DA87DE72EE2B07D00C32679 /* PHASE_2_COMPLETION_CHECKLIST.md in Resources */,
+				2DA87DE82EE2B07D00C32679 /* PHASE_2_INTEGRATION_GUIDE.md in Resources */,
+				2DA87E182EE2B54800C32679 /* TESTS_TO_DELETE.md in Resources */,
+				2DA87DE92EE2B07D00C32679 /* product_spec.md in Resources */,
+				2DA87DEA2EE2B07D00C32679 /* specsproduct-spec.md in Resources */,
+				2DA87E0A2EE2B2C000C32679 /* git-commit-sequence.sh in Resources */,
+				2DA87DEB2EE2B07D00C32679 /* specsfixescamera-black-screen-fix.md in Resources */,
+				2DA87E022EE2B14300C32679 /* DEBUG_SAVE_BUTTON.md in Resources */,
+				2DA87DEC2EE2B07D00C32679 /* PHASE_2_FILES_SUMMARY.md in Resources */,
+				2DA87E0C2EE2B2DB00C32679 /* QUICK_START_GIT.md in Resources */,
+				2DA87DED2EE2B07D00C32679 /* specsupdatescamera-throttling-update.md in Resources */,
+				2DA87E102EE2B37100C32679 /* GIT_WORKFLOW_DIAGRAM.md in Resources */,
+				2DA87DEE2EE2B07D00C32679 /* FIXES_SUMMARY.md in Resources */,
+				2DA87DEF2EE2B07D00C32679 /* CAMERA_BLACK_SCREEN_FIX.md in Resources */,
+				2DA87DF02EE2B07D00C32679 /* data-model.md in Resources */,
+				2DA87DF12EE2B07D00C32679 /* CLAUDE.md in Resources */,
+				2DA87E1A2EE2B57500C32679 /* TEST_FIX_SUMMARY.md in Resources */,
+				2DA87DF22EE2B07D00C32679 /* spec.md in Resources */,
+				2DA87DF32EE2B07D00C32679 /* quickstart.md in Resources */,
+				2DA87DF42EE2B07D00C32679 /* CAMERA_THROTTLING_UPDATE.md in Resources */,
+				2DA87E142EE2B42200C32679 /* GIT_AND_TESTING_README.md in Resources */,
+				2DA87DF52EE2B07D00C32679 /* PHASE_4_IMPLEMENTATION.md in Resources */,
+				2DA87DF62EE2B07D00C32679 /* requirements.md in Resources */,
+				2DA87E202EE2B68A00C32679 /* TEST_FIX_EXECUTION.md in Resources */,
+				2DA87DF72EE2B07D00C32679 /* CAMERA_FIX_QUICK_GUIDE.md in Resources */,
+				2DA87E1C2EE2B5EA00C32679 /* DELETE_TESTS_GUIDE.md in Resources */,
+				2DA87DF82EE2B07D00C32679 /* PHASE_2_TEST_COMMANDS.md in Resources */,
+				2DA87E162EE2B4E100C32679 /* TEST_FIX_IMPLEMENTATION.md in Resources */,
+				2DA87CCB2EE0012200C32679 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DE15DE62EDF344C006EDD45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DA87E2A2EE2B94E00C32679 /* RUN_TESTS_NOW.md in Resources */,
+				2DA87E2F2EE2BAD400C32679 /* VERIFY_NOW.md in Resources */,
+				2DA87E2D2EE2BAC300C32679 /* FINAL_TEST_FIX_REPORT.md in Resources */,
+				2DA87E282EE2B92E00C32679 /* TEST_FIXES_COMPLETED.md in Resources */,
+				2DA87D7B2EE2AACF00C32679 /* TEST_FIXES_SUMMARY.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DE15DF02EDF344C006EDD45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2DE15DD72EDF344A006EDD45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DA87CB72EE0012200C32679 /* StorageService.swift in Sources */,
+				2DA87CB82EE0012200C32679 /* ConversionResult.swift in Sources */,
+				2DA87CB92EE0012200C32679 /* SettingsViewModel.swift in Sources */,
+				2DA87CBA2EE0012200C32679 /* CameraFrame.swift in Sources */,
+				2DA87CBB2EE0012200C32679 /* ConversionEngine.swift in Sources */,
+				2DA87CBC2EE0012200C32679 /* CameraViewModel.swift in Sources */,
+				2DA87CBD2EE0012200C32679 /* VisionService.swift in Sources */,
+				2DA87CBF2EE0012200C32679 /* CurrencySettings.swift in Sources */,
+				2DA87CC02EE0012200C32679 /* Extensions.swift in Sources */,
+				2DA87CC12EE0012200C32679 /* Constants.swift in Sources */,
+				2DA87CC22EE0012200C32679 /* CurrencyConverterCameraApp.swift in Sources */,
+				2DA87CC52EE0012200C32679 /* Logger.swift in Sources */,
+				2DA87CC72EE0012200C32679 /* DetectedNumber.swift in Sources */,
+				2DA87DF92EE2B07D00C32679 /* ExchangeRateInputField.swift in Sources */,
+				2DA87DFA2EE2B07D00C32679 /* DetectionOverlayView.swift in Sources */,
+				2DA87DFB2EE2B07D00C32679 /* CameraView.swift in Sources */,
+				2DA87DFC2EE2B07D00C32679 /* CameraPreviewView.swift in Sources */,
+				2DA87DFD2EE2B07D00C32679 /* CurrencyInputField.swift in Sources */,
+				2DA87DFE2EE2B07D00C32679 /* SettingsView.swift in Sources */,
+				2DA87CC82EE0012200C32679 /* ContentView.swift in Sources */,
+				2DA87E002EE2B0D100C32679 /* InitialSetupView.swift in Sources */,
+				2DA87CC92EE0012200C32679 /* ConversionRecord.swift in Sources */,
+				2DA87CCA2EE0012200C32679 /* CameraManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DE15DE42EDF344C006EDD45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DA87D222EE0018A00C32679 /* SettingsViewModelTests.swift in Sources */,
+				2DA87D232EE0018A00C32679 /* TestHelper.swift in Sources */,
+				2DA87D2C2EE007D000C32679 /* CurrencySettingsTests.swift in Sources */,
+				2DA87D252EE0018A00C32679 /* ConversionEngineTests.swift in Sources */,
+				2DA87D262EE0018A00C32679 /* VisionServiceTests.swift in Sources */,
+				2DA87D272EE0018A00C32679 /* CameraManagerTests.swift in Sources */,
+				2DA87D282EE0018A00C32679 /* CurrencyConverterCameraTests.swift in Sources */,
+				2DA87D292EE0018A00C32679 /* StorageServiceTests.swift in Sources */,
+				2DA87D2A2EE0018A00C32679 /* ModelsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DE15DEE2EDF344C006EDD45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2DE15DEA2EDF344C006EDD45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2DE15DDA2EDF344A006EDD45 /* CurrencyConverterCamera */;
+			targetProxy = 2DE15DE92EDF344C006EDD45 /* PBXContainerItemProxy */;
+		};
+		2DE15DF42EDF344C006EDD45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2DE15DDA2EDF344A006EDD45 /* CurrencyConverterCamera */;
+			targetProxy = 2DE15DF32EDF344C006EDD45 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2DE15DFA2EDF344C006EDD45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = QD39SW5YJ4;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2DE15DFB2EDF344C006EDD45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = QD39SW5YJ4;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2DE15DFD2EDF344C006EDD45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QD39SW5YJ4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "需要相機權限才能顯示";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dindin.dev.CurrencyConverterCamera;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2DE15DFE2EDF344C006EDD45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QD39SW5YJ4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "需要相機權限才能顯示";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dindin.dev.CurrencyConverterCamera;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2DE15E002EDF344C006EDD45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QD39SW5YJ4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dindin.dev.CurrencyConverterCameraTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CurrencyConverterCamera.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CurrencyConverterCamera";
+			};
+			name = Debug;
+		};
+		2DE15E012EDF344C006EDD45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QD39SW5YJ4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dindin.dev.CurrencyConverterCameraTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CurrencyConverterCamera.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CurrencyConverterCamera";
+			};
+			name = Release;
+		};
+		2DE15E032EDF344C006EDD45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QD39SW5YJ4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dindin.dev.CurrencyConverterCameraUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CurrencyConverterCamera;
+			};
+			name = Debug;
+		};
+		2DE15E042EDF344C006EDD45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QD39SW5YJ4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dindin.dev.CurrencyConverterCameraUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CurrencyConverterCamera;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2DE15DD62EDF344A006EDD45 /* Build configuration list for PBXProject "CurrencyConverterCamera" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2DE15DFA2EDF344C006EDD45 /* Debug */,
+				2DE15DFB2EDF344C006EDD45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2DE15DFC2EDF344C006EDD45 /* Build configuration list for PBXNativeTarget "CurrencyConverterCamera" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2DE15DFD2EDF344C006EDD45 /* Debug */,
+				2DE15DFE2EDF344C006EDD45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2DE15DFF2EDF344C006EDD45 /* Build configuration list for PBXNativeTarget "CurrencyConverterCameraTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2DE15E002EDF344C006EDD45 /* Debug */,
+				2DE15E012EDF344C006EDD45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2DE15E022EDF344C006EDD45 /* Build configuration list for PBXNativeTarget "CurrencyConverterCameraUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2DE15E032EDF344C006EDD45 /* Debug */,
+				2DE15E042EDF344C006EDD45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2DE15DD32EDF344A006EDD45 /* Project object */;
+}

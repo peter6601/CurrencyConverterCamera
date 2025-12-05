@@ -1,13 +1,13 @@
 //
-//  PriceConvertUITestsLaunchTests.swift
-//  PriceConvertUITests
+//  CurrencyConverterCameraUITestsLaunchTests.swift
+//  CurrencyConverterCameraUITests
 //
 //  Created by 丁暐哲 on 2025/12/2.
 //
 
 import XCTest
 
-final class PriceConvertUITestsLaunchTests: XCTestCase {
+final class CurrencyConverterCameraUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
