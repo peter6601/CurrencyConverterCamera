@@ -28,7 +28,7 @@
    ☐ Host Application     (UNCHECK)
    ```
 6. Click **Create**
-7. Save location: `/Users/dindin/Documents/iOS Project/PriceConvert/`
+7. Save location: `/Users/dindin/Documents/iOS Project/CurrencyConverterCamera/`
    - Check "Create git repository on my Mac"
 
 **Verification**:
@@ -218,7 +218,7 @@ Test Suite 'CurrencyConverterCameraTests' finished at ... (Executed 3 tests with
 
 In Terminal:
 ```bash
-cd /Users/dindin/Documents/iOS\ Project/PriceConvert
+cd /Users/dindin/Documents/iOS\ Project/CurrencyConverterCamera
 git status
 ```
 
@@ -232,7 +232,7 @@ Expected output shows `.gitignore` file and recent commits.
 
 In Terminal:
 ```bash
-cd /Users/dindin/Documents/iOS\ Project/PriceConvert
+cd /Users/dindin/Documents/iOS\ Project/CurrencyConverterCamera
 git add -A
 git commit -m "[Stage 0] feat: project initialization with MVVM structure and test targets
 

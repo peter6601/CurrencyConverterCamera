@@ -8,7 +8,7 @@
 - Product Name: `CurrencyConverterCamera`
 - Language: Swift
 - UI: SwiftUI
-- Save to `/Users/dindin/Documents/iOS Project/PriceConvert/`
+- Save to `/Users/dindin/Documents/iOS Project/CurrencyConverterCamera/`
 
 ### 2️⃣ Add Three Test Targets (10 min)
 In Xcode Targets tab, add:
@@ -42,7 +42,7 @@ Copy content from `/tmp/` into Xcode:
 
 ### 7️⃣ Commit (2 min)
 ```bash
-cd /Users/dindin/Documents/iOS\ Project/PriceConvert
+cd /Users/dindin/Documents/iOS\ Project/CurrencyConverterCamera
 git add -A
 git commit -m "[Stage 0] feat: project initialization with MVVM structure and test targets"
 ```
