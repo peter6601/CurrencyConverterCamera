@@ -159,7 +159,8 @@ struct DetectionOverlayView: View {
     )
     
     let settings = CurrencySettings(
-        currencyName: "JPY",
+        foreignCurrency: "JPY",
+        localCurrency: "TWD",
         exchangeRate: 0.22
     )
 

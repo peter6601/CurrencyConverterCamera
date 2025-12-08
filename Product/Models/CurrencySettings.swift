@@ -9,14 +9,18 @@ import Foundation
 
 /// Represents user-configured currency and exchange rate for conversion calculations.
 ///
-/// This model stores the foreign currency name and exchange rate (foreign → TWD).
+/// This model stores the foreign currency name, local currency name, and exchange rate.
 /// All fields are validated before being considered valid for use in conversions.
 struct CurrencySettings: Codable, Equatable {
-    /// Foreign currency name (e.g., "JPY", "USD", "EUR")
+    /// Foreign currency code (e.g., "JPY", "USD", "EUR")
     /// Constraint: max 20 characters, non-empty
-    var currencyName: String
+    var foreignCurrency: String
 
-    /// Exchange rate (foreign currency → TWD)
+    /// Local currency code (e.g., "NTD", "TWD", "HKD")
+    /// Constraint: max 20 characters, non-empty
+    var localCurrency: String
+
+    /// Exchange rate (foreign currency → local currency)
     /// Constraint: 0.0001 ≤ rate ≤ 10000
     /// Example: 0.22 (1 JPY = 0.22 TWD)
     var exchangeRate: Decimal
@@ -25,31 +29,40 @@ struct CurrencySettings: Codable, Equatable {
     var lastUpdated: Date
 
     /// Default initializer
-    init(currencyName: String, exchangeRate: Decimal, lastUpdated: Date = Date()) {
-        self.currencyName = currencyName
+    init(
+        foreignCurrency: String, localCurrency: String, exchangeRate: Decimal,
+        lastUpdated: Date = Date()
+    ) {
+        self.foreignCurrency = foreignCurrency
+        self.localCurrency = localCurrency
         self.exchangeRate = exchangeRate
         self.lastUpdated = lastUpdated
     }
 
     /// Computed property: Check if settings are valid for use
     ///
-    /// Returns true only if both:
-    /// - currencyName is non-empty AND ≤20 characters
-    /// - exchangeRate is > 0 AND ≤ 10000
+    /// Returns true only if:
+    /// - foreignCurrency is non-empty AND <= 20 characters
+    /// - localCurrency is non-empty AND <= 20 characters
+    /// - exchangeRate is > 0 AND <= 10000
     var isValid: Bool {
-        !currencyName.isEmpty &&
-        currencyName.count <= 20 &&
-        exchangeRate > 0 &&
-        exchangeRate <= 10000
+        !foreignCurrency.isEmpty && foreignCurrency.count <= 20 && !localCurrency.isEmpty
+            && localCurrency.count <= 20 && exchangeRate > 0 && exchangeRate <= 10000
     }
 
     /// Returns validation error if settings are invalid, nil if valid
     var validationError: ValidationError? {
-        if currencyName.isEmpty {
-            return .emptyCurrencyName
+        if foreignCurrency.isEmpty {
+            return .emptyForeignCurrency
         }
-        if currencyName.count > 20 {
-            return .currencyNameTooLong
+        if foreignCurrency.count > 20 {
+            return .foreignCurrencyTooLong
+        }
+        if localCurrency.isEmpty {
+            return .emptyLocalCurrency
+        }
+        if localCurrency.count > 20 {
+            return .localCurrencyTooLong
         }
         if exchangeRate <= 0 {
             return .exchangeRateNotPositive
@@ -62,17 +75,23 @@ struct CurrencySettings: Codable, Equatable {
 
     /// Validation errors for CurrencySettings
     enum ValidationError: Error, Equatable {
-        case emptyCurrencyName
-        case currencyNameTooLong
+        case emptyForeignCurrency
+        case foreignCurrencyTooLong
+        case emptyLocalCurrency
+        case localCurrencyTooLong
         case exchangeRateNotPositive
         case exchangeRateTooLarge
 
         var description: String {
             switch self {
-            case .emptyCurrencyName:
-                return "Currency name cannot be empty"
-            case .currencyNameTooLong:
-                return "Currency name must be 20 characters or less"
+            case .emptyForeignCurrency:
+                return "Foreign currency code cannot be empty"
+            case .foreignCurrencyTooLong:
+                return "Foreign currency code must be 20 characters or less"
+            case .emptyLocalCurrency:
+                return "Local currency code cannot be empty"
+            case .localCurrencyTooLong:
+                return "Local currency code must be 20 characters or less"
             case .exchangeRateNotPositive:
                 return "Exchange rate must be greater than 0"
             case .exchangeRateTooLarge:
@@ -82,24 +101,5 @@ struct CurrencySettings: Codable, Equatable {
     }
 
     // MARK: - Codable Conformance
-
-    enum CodingKeys: String, CodingKey {
-        case currencyName
-        case exchangeRate
-        case lastUpdated
-    }
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        currencyName = try container.decode(String.self, forKey: .currencyName)
-        exchangeRate = try container.decode(Decimal.self, forKey: .exchangeRate)
-        lastUpdated = try container.decode(Date.self, forKey: .lastUpdated)
-    }
-
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(currencyName, forKey: .currencyName)
-        try container.encode(exchangeRate, forKey: .exchangeRate)
-        try container.encode(lastUpdated, forKey: .lastUpdated)
-    }
+    // Default Codable implementation is sufficient since property names match
 }

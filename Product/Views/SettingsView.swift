@@ -50,23 +50,14 @@ struct SettingsView: View {
 
                                 VStack(spacing: 12) {
                                     HStack {
-                                        Text("Currency")
+                                        Text("Variables")
                                             .foregroundStyle(.secondary)
                                         Spacer()
-                                        Text(settings.currencyName)
-                                            .fontWeight(.bold)
-                                            .font(.system(.body, design: .monospaced))
-                                    }
-
-                                    Divider()
-
-                                    HStack {
-                                        Text("Exchange Rate")
-                                            .foregroundStyle(.secondary)
-                                        Spacer()
-                                        Text(String(format: "%.4f", settings.exchangeRate.doubleValue))
-                                            .fontWeight(.bold)
-                                            .font(.system(.body, design: .monospaced))
+                                        Text(
+                                            "1 \(settings.foreignCurrency) = \(settings.exchangeRate.doubleValue) \(settings.localCurrency)"
+                                        )
+                                        .fontWeight(.bold)
+                                        .font(.system(.body, design: .monospaced))
                                     }
 
                                     Divider()
@@ -95,18 +86,32 @@ struct SettingsView: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.horizontal)
 
+                            // Foreign Currency Input
                             CurrencyInputField(
-                                value: $viewModel.currencyName,
-                                isInvalid: isErrorForField(.currency),
-                                errorMessage: isErrorForField(.currency) ? viewModel.validationError?.message : nil,
-                                helperText: viewModel.currencyHelperText
+                                value: $viewModel.foreignCurrency,
+                                isInvalid: isErrorForField(.foreign),
+                                errorMessage: isErrorForField(.foreign)
+                                    ? viewModel.validationError?.message : nil,
+                                helperText: "Foreign " + viewModel.foreignCurrencyHelperText
                             )
                             .padding(.horizontal)
 
+                            // Local Currency Input
+                            CurrencyInputField(
+                                value: $viewModel.localCurrency,
+                                isInvalid: isErrorForField(.local),
+                                errorMessage: isErrorForField(.local)
+                                    ? viewModel.validationError?.message : nil,
+                                helperText: "Local " + viewModel.localCurrencyHelperText
+                            )
+                            .padding(.horizontal)
+
+                            // Exchange Rate Input
                             ExchangeRateInputField(
                                 value: $viewModel.exchangeRateText,
                                 isInvalid: isErrorForField(.rate),
-                                errorMessage: isErrorForField(.rate) ? viewModel.validationError?.message : nil,
+                                errorMessage: isErrorForField(.rate)
+                                    ? viewModel.validationError?.message : nil,
                                 helperText: viewModel.exchangeRateHelperText
                             )
                             .padding(.horizontal)
@@ -163,7 +168,7 @@ struct SettingsView: View {
                 VStack(spacing: 12) {
                     // Save Button
                     Button(action: {
-                        viewModel.saveSettings()
+                        viewModel.saveSettings(to: appState)
                     }) {
                         if viewModel.isSaving {
                             HStack(spacing: 8) {
@@ -188,7 +193,7 @@ struct SettingsView: View {
 
                     // Reset Button
                     Button(action: {
-                        viewModel.reset()
+                        viewModel.reset(from: appState.currencySettings)
                     }) {
                         HStack(spacing: 8) {
                             Image(systemName: "arrow.counterclockwise")
@@ -207,13 +212,17 @@ struct SettingsView: View {
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                viewModel.loadSettings(from: appState.currencySettings)
+            }
         }
     }
 
     // MARK: - Helper
 
     private enum ErrorField {
-        case currency
+        case foreign
+        case local
         case rate
     }
 
@@ -221,9 +230,16 @@ struct SettingsView: View {
         guard let error = viewModel.validationError else { return false }
 
         switch field {
-        case .currency:
+        case .foreign:
             switch error {
-            case .emptyCurrencyName, .currencyNameTooLong, .invalidCurrencyFormat:
+            case .emptyForeignCurrency, .foreignCurrencyTooLong, .invalidForeignCurrencyFormat:
+                return true
+            default:
+                return false
+            }
+        case .local:
+            switch error {
+            case .emptyLocalCurrency, .localCurrencyTooLong, .invalidLocalCurrencyFormat:
                 return true
             default:
                 return false
@@ -231,7 +247,8 @@ struct SettingsView: View {
 
         case .rate:
             switch error {
-            case .invalidExchangeRate, .exchangeRateTooSmall, .exchangeRateTooLarge, .exchangeRateNotPositive:
+            case .invalidExchangeRate, .exchangeRateTooSmall, .exchangeRateTooLarge,
+                .exchangeRateNotPositive:
                 return true
             default:
                 return false

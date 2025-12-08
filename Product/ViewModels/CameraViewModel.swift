@@ -5,9 +5,9 @@
 //  Created by Claude on 2025-12-03.
 //
 
-import Foundation
 import AVFoundation
 internal import Combine
+import Foundation
 
 /// ViewModel for camera detection and conversion
 class CameraViewModel: NSObject, ObservableObject {
@@ -32,7 +32,7 @@ class CameraViewModel: NSObject, ObservableObject {
 
     private var processingTask: Task<Void, Never>?
     private var lastProcessingTime: Date?
-    private let processingInterval: TimeInterval = 0.1  // 每0.1秒處理一次
+    private let processingInterval: TimeInterval = 0.01  // 每0.1秒處理一次
 
     // MARK: - Initialization
 
@@ -43,7 +43,7 @@ class CameraViewModel: NSObject, ObservableObject {
 
         cameraManager.delegate = self
         setupCameraPermissions()
-        
+
         // Monitor camera session status
         cameraManager.$isSessionRunning
             .receive(on: DispatchQueue.main)
@@ -95,7 +95,9 @@ class CameraViewModel: NSObject, ObservableObject {
             // Just update the frame without processing
             DispatchQueue.main.async {
                 self.currentFrame = CameraFrame(
-                    size: CGSize(width: CVPixelBufferGetWidth(pixelBuffer), height: CVPixelBufferGetHeight(pixelBuffer)),
+                    size: CGSize(
+                        width: CVPixelBufferGetWidth(pixelBuffer),
+                        height: CVPixelBufferGetHeight(pixelBuffer)),
                     detectedNumbers: []
                 )
                 self.detectedNumbers = []
@@ -104,7 +106,7 @@ class CameraViewModel: NSObject, ObservableObject {
             }
             return
         }
-        
+
         // 節流控制：檢查是否距離上次處理已經過了 x 秒
         let now = Date()
         if let lastTime = lastProcessingTime {
@@ -114,7 +116,7 @@ class CameraViewModel: NSObject, ObservableObject {
                 return
             }
         }
-        
+
         guard !isProcessing else { return }
 
         // 更新最後處理時間
@@ -138,7 +140,9 @@ class CameraViewModel: NSObject, ObservableObject {
 
                     // Update frame
                     self.currentFrame = CameraFrame(
-                        size: CGSize(width: CVPixelBufferGetWidth(pixelBuffer), height: CVPixelBufferGetHeight(pixelBuffer)),
+                        size: CGSize(
+                            width: CVPixelBufferGetWidth(pixelBuffer),
+                            height: CVPixelBufferGetHeight(pixelBuffer)),
                         detectedNumbers: highConfidence
                     )
 
@@ -148,7 +152,8 @@ class CameraViewModel: NSObject, ObservableObject {
                     self.isProcessing = false
                 }
             } catch {
-                AppLogger.error("Frame processing failed", error: error, category: AppLogger.general)
+                AppLogger.error(
+                    "Frame processing failed", error: error, category: AppLogger.general)
                 DispatchQueue.main.async {
                     self.conversionError = "Detection failed: \(error.localizedDescription)"
                     self.isProcessing = false
@@ -171,16 +176,16 @@ class CameraViewModel: NSObject, ObservableObject {
             // Convert the detected price
             let converted = try conversionEngine.convertPrice(
                 firstDetection.value,
-                from: settings.currencyName,
-                to: settings.currencyName,
+                from: settings.foreignCurrency,
+                to: settings.localCurrency,
                 using: settings.exchangeRate
             )
 
             let result = ConversionResult(
                 detectedPrice: firstDetection.value,
                 convertedAmount: converted,
-                sourceCurrency: settings.currencyName,
-                targetCurrency: settings.currencyName,
+                sourceCurrency: settings.foreignCurrency,
+                targetCurrency: settings.localCurrency,
                 exchangeRate: settings.exchangeRate,
                 confidence: firstDetection.confidence
             )
@@ -214,7 +219,8 @@ class CameraViewModel: NSObject, ObservableObject {
             let record = ConversionRecord(
                 originalPrice: result.detectedPrice,
                 convertedAmount: result.convertedAmount,
-                currencyName: result.sourceCurrency,
+                foreignCurrency: result.sourceCurrency,
+                localCurrency: result.targetCurrency,
                 exchangeRate: result.exchangeRate,
                 timestamp: result.timestamp
             )
@@ -250,7 +256,9 @@ extension CameraViewModel: CameraManagerDelegate {
         processFrame(pixelBuffer)
     }
 
-    func cameraManager(_ manager: CameraManager, didUpdateAuthorizationStatus status: AVAuthorizationStatus) {
+    func cameraManager(
+        _ manager: CameraManager, didUpdateAuthorizationStatus status: AVAuthorizationStatus
+    ) {
         DispatchQueue.main.async {
             if status == .authorized {
                 self.cameraPermissionDenied = false
@@ -268,4 +276,3 @@ extension CameraViewModel: CameraManagerDelegate {
         }
     }
 }
-

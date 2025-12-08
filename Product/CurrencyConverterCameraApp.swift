@@ -5,15 +5,15 @@
 //  Created by 丁暐哲 on 2025/12/2.
 //
 
-import SwiftUI
 internal import Combine
+import SwiftUI
 
 @main
 struct CurrencyConverterCameraApp: App {
     // MARK: - App Lifecycle
-    
+
     @State private var appState = AppState()
-    
+
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -34,16 +34,16 @@ class AppState: ObservableObject {
     @Published var errorMessage: String?
 
     private let storageService: StorageService
-    
+
     // MARK: - Initialization
-    
+
     init() {
         self.storageService = StorageService()
         self.setupApp()
     }
-    
+
     // MARK: - Setup
-    
+
     private func setupApp() {
         AppLogger.info("App initializing...", category: AppLogger.general)
 
@@ -55,84 +55,95 @@ class AppState: ObservableObject {
 
         AppLogger.info("App initialized successfully", category: AppLogger.general)
     }
-    
+
     // MARK: - Currency Settings Management
-    
+
     /// Load currency settings from persistent storage
     func loadCurrencySettings() {
         AppLogger.debug("Loading currency settings...", category: AppLogger.storage)
-        
+
         if let settings = storageService.loadCurrencySettings() {
             self.currencySettings = settings
-            AppLogger.info("Currency settings loaded: \(settings.currencyName)", category: AppLogger.storage)
+            AppLogger.info(
+                "Currency settings loaded: \(settings.foreignCurrency) -> \(settings.localCurrency)",
+                category: AppLogger.storage)
         } else {
             AppLogger.info("No saved currency settings found", category: AppLogger.storage)
         }
     }
-    
+
     /// Save currency settings to persistent storage
     func saveCurrencySettings(_ settings: CurrencySettings) {
-        AppLogger.debug("Saving currency settings: \(settings.currencyName)", category: AppLogger.storage)
-        
+        AppLogger.debug(
+            "Saving currency settings: \(settings.foreignCurrency) -> \(settings.localCurrency)",
+            category: AppLogger.storage)
+
         guard settings.isValid else {
             AppLogger.warning("Cannot save invalid currency settings", category: AppLogger.storage)
-            self.errorMessage = "Invalid settings: \(settings.validationError?.localizedDescription ?? "Unknown error")"
+            self.errorMessage =
+                "Invalid settings: \(settings.validationError?.localizedDescription ?? "Unknown error")"
             return
         }
-        
+
         do {
             try storageService.saveCurrencySettings(settings)
             self.currencySettings = settings
             self.errorMessage = nil
             AppLogger.info("Currency settings saved successfully", category: AppLogger.storage)
         } catch {
-            AppLogger.error("Failed to save currency settings", error: error, category: AppLogger.storage)
+            AppLogger.error(
+                "Failed to save currency settings", error: error, category: AppLogger.storage)
             self.errorMessage = "Failed to save settings"
         }
     }
-    
+
     // MARK: - Conversion History Management
-    
+
     /// Load conversion history from persistent storage
     func loadConversionHistory() {
         AppLogger.debug("Loading conversion history...", category: AppLogger.storage)
-        
+
         self.conversionHistory = storageService.loadConversionHistory()
-        AppLogger.info("Loaded \(conversionHistory.count) conversion records", category: AppLogger.storage)
+        AppLogger.info(
+            "Loaded \(conversionHistory.count) conversion records", category: AppLogger.storage)
     }
-    
+
     /// Add a new conversion record to history
     func addConversionRecord(_ record: ConversionRecord) {
-        AppLogger.debug("Adding conversion record: \(record.originalPrice) → \(record.convertedAmount)", category: AppLogger.conversion)
-        
+        AppLogger.debug(
+            "Adding conversion record: \(record.originalPrice) → \(record.convertedAmount)",
+            category: AppLogger.conversion)
+
         do {
             try storageService.addConversionRecord(record)
-            self.conversionHistory.insert(record, at: 0) // Insert at top (most recent first)
+            self.conversionHistory.insert(record, at: 0)  // Insert at top (most recent first)
             self.errorMessage = nil
             AppLogger.info("Conversion record added successfully", category: AppLogger.conversion)
         } catch {
-            AppLogger.error("Failed to add conversion record", error: error, category: AppLogger.conversion)
+            AppLogger.error(
+                "Failed to add conversion record", error: error, category: AppLogger.conversion)
             self.errorMessage = "Failed to save conversion"
         }
     }
-    
+
     /// Clear all conversion history
     func clearConversionHistory() {
         AppLogger.warning("Clearing conversion history...", category: AppLogger.storage)
-        
+
         do {
             try storageService.clearHistory()
             self.conversionHistory = []
             self.errorMessage = nil
             AppLogger.info("Conversion history cleared", category: AppLogger.storage)
         } catch {
-            AppLogger.error("Failed to clear conversion history", error: error, category: AppLogger.storage)
+            AppLogger.error(
+                "Failed to clear conversion history", error: error, category: AppLogger.storage)
             self.errorMessage = "Failed to clear history"
         }
     }
-    
+
     // MARK: - Error Handling
-    
+
     /// Clear the current error message
     func clearError() {
         self.errorMessage = nil

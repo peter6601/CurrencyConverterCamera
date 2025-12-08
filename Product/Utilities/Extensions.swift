@@ -5,8 +5,8 @@
 //  Created by Claude on 2025-12-02.
 //
 
-import Foundation
 import CoreGraphics
+import Foundation
 
 // MARK: - String Extensions
 
@@ -124,12 +124,8 @@ extension CGRect {
 
     /// Check if bounding box is valid (non-zero size, within [0,1] bounds)
     var isValidNormalizedBox: Bool {
-        self.width > 0 &&
-        self.height > 0 &&
-        self.minX >= 0 &&
-        self.minY >= 0 &&
-        self.maxX <= 1.0 &&
-        self.maxY <= 1.0
+        self.width > 0 && self.height > 0 && self.minX >= 0 && self.minY >= 0 && self.maxX <= 1.0
+            && self.maxY <= 1.0
     }
 
     /// Get center point of bounding box
@@ -156,10 +152,10 @@ extension CGRect {
 
 extension Array where Element == ConversionRecord {
     /// Filter records by currency name
-    /// - Parameter currency: Currency name to filter
+    /// - Parameter currency: Currency name to filter (foreign currency)
     /// - Returns: Records matching the currency
     func filterByCurrency(_ currency: String) -> [ConversionRecord] {
-        filter { $0.currencyName == currency }
+        filter { $0.foreignCurrency == currency }
     }
 
     /// Filter records by date range

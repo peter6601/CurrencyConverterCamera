@@ -5,14 +5,15 @@
 //  Created by Claude on 2025-12-03.
 //
 
-import Foundation
 internal import Combine
+import Foundation
 
 /// ViewModel for managing currency settings
 class SettingsViewModel: ObservableObject {
     // MARK: - Published Properties
 
-    @Published var currencyName: String = ""
+    @Published var foreignCurrency: String = ""
+    @Published var localCurrency: String = ""
     @Published var exchangeRateText: String = ""
     @Published var validationError: ValidationError?
     @Published var isSaving = false
@@ -20,16 +21,17 @@ class SettingsViewModel: ObservableObject {
 
     // MARK: - Private Properties
 
-    private let storageService: StorageService
-    private let appState: AppState
     private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Validation Error Type
 
     enum ValidationError: Error, Equatable {
-        case emptyCurrencyName
-        case currencyNameTooLong
-        case invalidCurrencyFormat
+        case emptyForeignCurrency
+        case foreignCurrencyTooLong
+        case invalidForeignCurrencyFormat
+        case emptyLocalCurrency
+        case localCurrencyTooLong
+        case invalidLocalCurrencyFormat
         case invalidExchangeRate
         case exchangeRateTooSmall
         case exchangeRateTooLarge
@@ -38,12 +40,18 @@ class SettingsViewModel: ObservableObject {
 
         var message: String {
             switch self {
-            case .emptyCurrencyName:
-                return "Currency name cannot be empty"
-            case .currencyNameTooLong:
-                return "Currency name must be 20 characters or less"
-            case .invalidCurrencyFormat:
-                return "Currency must be letters only (e.g., JPY)"
+            case .emptyForeignCurrency:
+                return "Foreign currency code cannot be empty"
+            case .foreignCurrencyTooLong:
+                return "Foreign currency code must be 20 characters or less"
+            case .invalidForeignCurrencyFormat:
+                return "Foreign currency must be letters only (e.g., JPY)"
+            case .emptyLocalCurrency:
+                return "Local currency code cannot be empty"
+            case .localCurrencyTooLong:
+                return "Local currency code must be 20 characters or less"
+            case .invalidLocalCurrencyFormat:
+                return "Local currency must be letters only (e.g., NTD)"
             case .invalidExchangeRate:
                 return "Invalid exchange rate format"
             case .exchangeRateTooSmall:
@@ -60,18 +68,21 @@ class SettingsViewModel: ObservableObject {
 
     // MARK: - Initialization
 
-    init(storageService: StorageService = StorageService(), appState: AppState = AppState()) {
-        self.storageService = storageService
-        self.appState = appState
-
-        loadSettings()
+    init() {
         setupBindings()
     }
 
     // MARK: - Setup
 
     private func setupBindings() {
-        $currencyName
+        $foreignCurrency
+            .debounce(for: .milliseconds(300), scheduler: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.validateInput()
+            }
+            .store(in: &cancellables)
+
+        $localCurrency
             .debounce(for: .milliseconds(300), scheduler: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.validateInput()
@@ -88,41 +99,47 @@ class SettingsViewModel: ObservableObject {
 
     // MARK: - Loading
 
-    func loadSettings() {
-        AppLogger.debug("Loading settings in ViewModel", category: AppLogger.general)
+    func loadSettings(from settings: CurrencySettings?) {
+        AppLogger.debug("Loading settings into ViewModel", category: AppLogger.general)
 
-        if let settings = storageService.loadCurrencySettings() {
-            self.currencyName = settings.currencyName
+        if let settings = settings {
+            self.foreignCurrency = settings.foreignCurrency
+            self.localCurrency = settings.localCurrency
             self.exchangeRateText = String(format: "%.4f", settings.exchangeRate.doubleValue)
-            AppLogger.info("Settings loaded: \(settings.currencyName)", category: AppLogger.general)
         }
     }
 
     // MARK: - Validation
 
     private func validateInput() {
-        let currencyError = validateCurrencyName(currencyName)
+        let foreignError = validateCurrencyCode(foreignCurrency, type: .foreign)
+        let localError = validateCurrencyCode(localCurrency, type: .local)
         let rateError = validateExchangeRate(exchangeRateText)
 
-        self.validationError = currencyError ?? rateError
+        self.validationError = foreignError ?? localError ?? rateError
     }
-    
+
     // For testing purposes: validate immediately without debounce
     func validateNow() {
         validateInput()
     }
 
-    private func validateCurrencyName(_ name: String) -> ValidationError? {
-        if name.isEmpty {
-            return .emptyCurrencyName
+    private enum CurrencyType {
+        case foreign
+        case local
+    }
+
+    private func validateCurrencyCode(_ code: String, type: CurrencyType) -> ValidationError? {
+        if code.isEmpty {
+            return type == .foreign ? .emptyForeignCurrency : .emptyLocalCurrency
         }
 
-        if name.count > Constants.maxCurrencyNameLength {
-            return .currencyNameTooLong
+        if code.count > Constants.maxCurrencyNameLength {
+            return type == .foreign ? .foreignCurrencyTooLong : .localCurrencyTooLong
         }
 
-        if !name.allSatisfy({ $0.isLetter }) {
-            return .invalidCurrencyFormat
+        if !code.allSatisfy({ $0.isLetter }) {
+            return type == .foreign ? .invalidForeignCurrencyFormat : .invalidLocalCurrencyFormat
         }
 
         return nil
@@ -153,16 +170,17 @@ class SettingsViewModel: ObservableObject {
     }
 
     var isValid: Bool {
-        let currencyOK = validateCurrencyName(currencyName) == nil
+        let foreignOK = validateCurrencyCode(foreignCurrency, type: .foreign) == nil
+        let localOK = validateCurrencyCode(localCurrency, type: .local) == nil
         let rateOK = validateExchangeRate(exchangeRateText) == nil
         let rateNotEmpty = !exchangeRateText.isEmpty
 
-        return currencyOK && rateOK && rateNotEmpty
+        return foreignOK && localOK && rateOK && rateNotEmpty
     }
 
     // MARK: - Saving
 
-    func saveSettings() {
+    func saveSettings(to appState: AppState) {
         AppLogger.debug("Saving settings from ViewModel", category: AppLogger.general)
 
         validateInput()
@@ -175,39 +193,36 @@ class SettingsViewModel: ObservableObject {
         isSaving = true
         successMessage = nil
 
-        do {
-            guard let rate = Decimal(string: exchangeRateText) else {
-                self.validationError = .invalidExchangeRate
-                self.isSaving = false
-                return
-            }
+        guard let rate = Decimal(string: exchangeRateText) else {
+            self.validationError = .invalidExchangeRate
+            self.isSaving = false
+            return
+        }
 
-            let settings = CurrencySettings(
-                currencyName: currencyName.uppercased(),
-                exchangeRate: rate
-            )
+        let settings = CurrencySettings(
+            foreignCurrency: foreignCurrency.uppercased(),
+            localCurrency: localCurrency.uppercased(),
+            exchangeRate: rate
+        )
 
-            guard settings.isValid else {
-                self.validationError = .storageError(settings.validationError?.localizedDescription ?? "Unknown error")
-                self.isSaving = false
-                return
-            }
+        guard settings.isValid else {
+            self.validationError = .storageError(
+                settings.validationError?.description ?? "Unknown error")
+            self.isSaving = false
+            return
+        }
 
-            try storageService.saveCurrencySettings(settings)
+        // Use AppState to save
+        appState.saveCurrencySettings(settings)
 
-            appState.currencySettings = settings
-
+        if let error = appState.errorMessage {
+            self.validationError = .storageError(error)
+        } else {
             self.validationError = nil
             self.successMessage = "Settings saved successfully"
-
-            AppLogger.info("Settings saved: \(settings.currencyName)", category: AppLogger.general)
-
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 self.successMessage = nil
             }
-        } catch {
-            AppLogger.error("Failed to save settings", error: error, category: AppLogger.general)
-            self.validationError = .storageError("Failed to save settings")
         }
 
         isSaving = false
@@ -215,14 +230,16 @@ class SettingsViewModel: ObservableObject {
 
     // MARK: - Reset
 
-    func reset() {
+    func reset(from settings: CurrencySettings?) {
         AppLogger.debug("Resetting settings form", category: AppLogger.general)
 
-        if let settings = appState.currencySettings {
-            self.currencyName = settings.currencyName
+        if let settings = settings {
+            self.foreignCurrency = settings.foreignCurrency
+            self.localCurrency = settings.localCurrency
             self.exchangeRateText = String(format: "%.4f", settings.exchangeRate.doubleValue)
         } else {
-            self.currencyName = ""
+            self.foreignCurrency = ""
+            self.localCurrency = ""
             self.exchangeRateText = ""
         }
 
@@ -232,8 +249,12 @@ class SettingsViewModel: ObservableObject {
 
     // MARK: - Helper Properties
 
-    var currencyNameUppercased: String {
-        currencyName.uppercased()
+    var foreignCurrencyUppercased: String {
+        foreignCurrency.uppercased()
+    }
+
+    var localCurrencyUppercased: String {
+        localCurrency.uppercased()
     }
 
     var formattedExchangeRate: String {
@@ -243,8 +264,12 @@ class SettingsViewModel: ObservableObject {
         return String(format: "%.4f", rate.doubleValue)
     }
 
-    var currencyHelperText: String {
-        "3-letter currency code (e.g., JPY, USD, EUR)"
+    var foreignCurrencyHelperText: String {
+        "3-letter code (e.g., JPY)"
+    }
+
+    var localCurrencyHelperText: String {
+        "3-letter code (e.g., NTD)"
     }
 
     var exchangeRateHelperText: String {

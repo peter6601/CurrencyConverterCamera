@@ -37,3 +37,11 @@ General "How-to" guides.
 
 ### 📂 _Archive
 Old, redundant, or malformed files that are kept for backup purposes.
+
+### Build Note
+To prevent documentation from being accidentally bundled into the app (and avoid Xcode errors like "Multiple commands produce ... data-model.md"), the project excludes Markdown files from build inputs.
+
+- Build settings are centralized in `Config/BuildSettings.xcconfig`.
+- Exclusion rule: `EXCLUDED_SOURCE_FILE_NAMES = *.md`
+- If you need to ship a specific markdown file, override this in the target's build settings.
+

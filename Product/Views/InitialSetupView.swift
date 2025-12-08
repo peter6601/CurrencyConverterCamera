@@ -6,316 +6,316 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct InitialSetupView: View {
     @Environment(\.appState) var appState
-    @State private var currencyName = ""
+
+    // UI State
+    @State private var foreignCurrency = ""
+    @State private var localCurrency = ""
     @State private var exchangeRateText = ""
     @State private var validationError: String?
     @State private var isSaving = false
-    
+
     // Callback to navigate to camera
     var onContinueToCamera: () -> Void
 
+    // Computed Properties for Validation
     var isValid: Bool {
-        let currencyValid = !currencyName.isEmpty && currencyName.count <= 20 && currencyName.allSatisfy { $0.isLetter }
+        let foreignValid =
+            !foreignCurrency.isEmpty && foreignCurrency.count <= 20
+            && foreignCurrency.allSatisfy { $0.isLetter }
+        let localValid =
+            !localCurrency.isEmpty && localCurrency.count <= 20
+            && localCurrency.allSatisfy { $0.isLetter }
+
         guard let rate = Decimal(string: exchangeRateText) else {
             return false
         }
         let rateValid = !exchangeRateText.isEmpty && rate > 0
-        return currencyValid && rateValid
+
+        return foreignValid && localValid && rateValid
     }
-    
+
     var body: some View {
         ZStack {
             // Background
-            LinearGradient(
-                gradient: Gradient(colors: [Color.blue.opacity(0.1), Color.purple.opacity(0.1)]),
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
+            Color(.systemGray6)
+                .ignoresSafeArea()
 
             VStack(spacing: 0) {
-                // Header
-                VStack(spacing: 12) {
-                    Image(systemName: "gear.circle.fill")
-                        .font(.system(size: 64))
-                        .foregroundColor(.blue)
-
-                    Text("Currency Settings")
-                        .font(.title2)
-                        .fontWeight(.bold)
-
-                    Text("Configure your currency exchange rate")
-                        .font(.body)
-                        .foregroundColor(.gray)
-                        .multilineTextAlignment(.center)
-                }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.white.opacity(0.8))
-
-                // Form
-                ScrollView {
-                    VStack(spacing: 20) {
-                        // Currency Input
-                        VStack(alignment: .leading, spacing: 8) {
-                            Label("Currency Code", systemImage: "dollarsign.circle.fill")
-                                .font(.headline)
-                                .foregroundColor(.blue)
-
-                            TextField("e.g., JPY, USD, EUR", text: $currencyName)
-                                .textInputAutocapitalization(.characters)
-                                .padding()
-                                .background(Color.gray.opacity(0.1))
-                                .cornerRadius(8)
-                                .onChange(of: currencyName) { _, newValue in
-                                    currencyName = String(newValue.filter { $0.isLetter }.prefix(20))
-                                    validateInput()
-                                }
-
-                            Text("Maximum 20 letters, letters only")
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                        }
-
-                        // Exchange Rate Input
-                        VStack(alignment: .leading, spacing: 8) {
-                            Label("Exchange Rate", systemImage: "chart.line.uptrend.xyaxis.circle.fill")
-                                .font(.headline)
-                                .foregroundColor(.blue)
-
-                            TextField("e.g., 0.22 or 31.35", text: $exchangeRateText)
-                                .keyboardType(.decimalPad)
-                                .padding()
-                                .background(Color.gray.opacity(0.1))
-                                .cornerRadius(8)
-                                .onChange(of: exchangeRateText) { _, _ in
-                                    validateInput()
-                                }
-
-                            Text("Must be between 0.0001 and 10000")
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                        }
-
-                        // Validation Error
-                        if let error = validationError {
-                            HStack(spacing: 8) {
-                                Image(systemName: "exclamationmark.circle.fill")
-                                    .foregroundColor(.red)
-                                Text(error)
-                                    .font(.caption)
-                                    .foregroundColor(.red)
-                            }
-                            .padding()
-                            .background(Color.red.opacity(0.1))
-                            .cornerRadius(8)
-                        }
-
+                // MARK: - Blue Header
+                VStack(alignment: .leading, spacing: 10) {
+                    HStack {
                         Spacer()
+                        // Optional dots menu if needed, ignoring for now based on screenshot
                     }
-                    .padding()
-                }
 
-                // Action Buttons
-                VStack(spacing: 12) {
-                    // Debug info - 顯示當前狀態
-                    if let currentSettings = appState.currencySettings {
-                        HStack {
-                            Image(systemName: "checkmark.circle.fill")
-                                .foregroundColor(.green)
-                            Text("Saved: \(currentSettings.currencyName)")
-                                .font(.caption)
-                                .foregroundColor(.green)
-                        }
-                        .padding(.horizontal)
-                        .padding(.vertical, 4)
-                        .background(Color.green.opacity(0.1))
-                        .cornerRadius(8)
-                    } else {
-                        HStack {
-                            Image(systemName: "exclamationmark.circle.fill")
-                                .foregroundColor(.orange)
-                            Text("No settings saved yet")
-                                .font(.caption)
-                                .foregroundColor(.orange)
-                        }
-                        .padding(.horizontal)
-                        .padding(.vertical, 4)
-                        .background(Color.orange.opacity(0.1))
-                        .cornerRadius(8)
-                    }
-                    
-                    // Save Button
-                    Button(action: saveSettings) {
-                        if isSaving {
-                            HStack(spacing: 8) {
-                                ProgressView()
-                                    .tint(.white)
-                                Text("Saving...")
+                    Text("匯率設定")
+                        .font(.system(size: 34, weight: .bold))
+                        .foregroundColor(.white)
+                        .padding(.top, 40)
+
+                    Text("設定您的換算基準")
+                        .font(.body)
+                        .foregroundColor(.white.opacity(0.9))
+                        .padding(.bottom, 20)
+                }
+                .padding(.horizontal, 24)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color.blue)  // Using standard blue, or a custom hex if needed
+                .cornerRadius(30, corners: [.bottomLeft, .bottomRight])
+                .ignoresSafeArea(edges: .top)
+
+                // MARK: - Main Content Card
+                ScrollView {
+                    VStack(spacing: 24) {
+
+                        // MARK: - Rate Input Section
+                        // 匯率 (1 外幣 = ? 本幣)
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text(
+                                "匯率 (1 \(foreignCurrency.isEmpty ? "外幣" : foreignCurrency) = ? \(localCurrency.isEmpty ? "本幣" : localCurrency))"
+                            )
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                            .fontWeight(.bold)
+
+                            HStack(spacing: 12) {
+                                Image(systemName: "multiply")
+                                    .font(.system(size: 24))
+                                    .foregroundColor(.gray)
+
+                                TextField("0.00", text: $exchangeRateText)
+                                    .font(.system(size: 48, weight: .bold, design: .monospaced))
+                                    .foregroundColor(.blue)
+                                    .keyboardType(.decimalPad)
                             }
-                        } else {
-                            Text("Save Settings")
-                                .fontWeight(.semibold)
-                        }
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(isValid ? Color.blue : Color.gray)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
-                    .disabled(!isValid || isSaving)
-                    
-                    // Continue to Camera Button
-                    Button(action: {
-                        // Only allow navigation if settings are saved
-                        if appState.currencySettings != nil {
-                            onContinueToCamera()
-                        }
-                    }) {
-                        HStack {
-                            Image(systemName: "camera.fill")
-                            Text("Continue to Camera")
-                                .fontWeight(.semibold)
-                        }
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(appState.currencySettings != nil ? Color.green : Color.gray)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
-                    .disabled(appState.currencySettings == nil)
 
-                    Text(appState.currencySettings != nil ? "Tap to start using the camera" : "Save settings first to use the camera")
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                        .multilineTextAlignment(.center)
+                            Divider()
+                        }
+
+                        // MARK: - Local Currency Section
+                        // 本幣 (顯示)
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("本幣 (顯示)")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                                .fontWeight(.bold)
+
+                            HStack(spacing: 12) {
+                                Image(systemName: "dollarsign.circle.fill")  // Replaced bag icon with SF Symbol
+                                    .font(.system(size: 32))
+                                    .foregroundColor(.gray)
+
+                                TextField("NTD", text: $localCurrency)
+                                    .font(.system(size: 32, weight: .bold, design: .monospaced))
+                                    .foregroundColor(Color(red: 0.2, green: 0.2, blue: 0.3))  // Dark blue-gray
+                                    .textInputAutocapitalization(.characters)
+                                    .onChange(of: localCurrency) { _, newValue in
+                                        localCurrency = String(
+                                            newValue.filter { $0.isLetter }.prefix(20)
+                                        ).uppercased()
+                                    }
+
+                                Spacer()
+                            }
+
+                            Divider()
+                        }
+
+                        // MARK: - Foreign Currency Section (Added to match logic)
+                        // Needed to define what "1 Foreign" is.
+                        // Based on screenshot "1,000 JPY", user must input JPY somewhere.
+                        // I will add a third field similar to Local Currency.
+
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("外幣代號")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                                .fontWeight(.bold)
+
+                            HStack(spacing: 12) {
+                                Image(systemName: "globe")
+                                    .font(.system(size: 32))
+                                    .foregroundColor(.gray)
+
+                                TextField("JPY", text: $foreignCurrency)
+                                    .font(.system(size: 32, weight: .bold, design: .monospaced))
+                                    .foregroundColor(Color(red: 0.2, green: 0.2, blue: 0.3))
+                                    .textInputAutocapitalization(.characters)
+                                    .onChange(of: foreignCurrency) { _, newValue in
+                                        foreignCurrency = String(
+                                            newValue.filter { $0.isLetter }.prefix(20)
+                                        ).uppercased()
+                                    }
+
+                                Spacer()
+                            }
+
+                            Divider()
+                        }
+
+                        // MARK: - Prevention Preview Card
+                        // 試算預覽
+                        VStack(spacing: 16) {
+                            Text("試算預覽")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                                .fontWeight(.bold)
+
+                            HStack(alignment: .center, spacing: 8) {
+                                Text("1,000")
+                                    .font(.title2)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.gray)
+
+                                Text(foreignCurrency.isEmpty ? "JPY" : foreignCurrency)
+                                    .font(.headline)
+                                    .foregroundColor(.gray)
+
+                                Text("=")
+                                    .font(.title2)
+                                    .foregroundColor(.gray.opacity(0.5))
+
+                                let rate = Decimal(string: exchangeRateText) ?? 0
+                                let result = rate * 1000
+                                let formattedResult = formatResult(result)
+
+                                Text(formattedResult)
+                                    .font(.title2)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.blue)
+
+                                Text(localCurrency.isEmpty ? "NTD" : localCurrency)
+                                    .font(.headline)
+                                    .foregroundColor(.gray)
+                            }
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 24)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(16)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+                        )
+
+                    }
+                    .padding(24)
+                    .background(Color.white)
+                    .cornerRadius(24)
+                    .padding(.horizontal, 16)
+                    .padding(.top, -20)  // Overlap with blue header slightly
+                    .shadow(color: Color.black.opacity(0.05), radius: 10, x: 0, y: 5)
                 }
-                .padding()
-                .background(Color.white.opacity(0.8))
+
+                Spacer()
+
+                // MARK: - Bottom Button
+                Button(action: saveSettings) {
+                    HStack {
+                        if isSaving {
+                            ProgressView()
+                                .tint(.white)
+                                .padding(.trailing, 8)
+                        } else {
+                            Image(systemName: "camera")
+                                .font(.headline)
+                        }
+
+                        Text(isSaving ? "儲存中..." : "儲存並開啟相機")
+                            .font(.headline)
+                            .fontWeight(.bold)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 16)
+                    .background(isValid ? Color.blue : Color.blue.opacity(0.5))
+                    .foregroundColor(.white)
+                    .cornerRadius(16)
+                }
+                .padding(.horizontal, 24)
+                .padding(.bottom, 34)  // Bottom safe area
+                .disabled(!isValid || isSaving)
             }
         }
         .onAppear {
             loadExistingSettings()
         }
     }
-    
+
+    // MARK: - Logic
+
     private func loadExistingSettings() {
-        // Load existing settings if available
         if let settings = appState.currencySettings {
-            currencyName = settings.currencyName
+            foreignCurrency = settings.foreignCurrency
+            localCurrency = settings.localCurrency
             exchangeRateText = String(describing: settings.exchangeRate)
-            AppLogger.info("Loaded existing settings: \(settings.currencyName)", category: AppLogger.general)
+            // Auto-load implies we just populate.
+            // Requirement said "Next time ... automatically bring in values".
         }
     }
 
-
-
-    private func validateInput() {
-        validationError = nil
-
-        if currencyName.isEmpty {
-            validationError = "Please enter a currency code"
-            return
-        }
-
-        if currencyName.count > 20 {
-            validationError = "Currency code must be 20 characters or less"
-            return
-        }
-
-        if !currencyName.allSatisfy({ $0.isLetter }) {
-            validationError = "Currency must contain letters only"
-            return
-        }
-
-        if exchangeRateText.isEmpty {
-            validationError = "Please enter an exchange rate"
-            return
-        }
-
-        guard let rate = Decimal(string: exchangeRateText) else {
-            validationError = "Invalid exchange rate format"
-            return
-        }
-
-        if rate <= 0 {
-            validationError = "Exchange rate must be greater than 0"
-            return
-        }
-
-        if rate < Constants.minExchangeRate {
-            validationError = "Exchange rate must be at least 0.0001"
-            return
-        }
-
-        if rate > Constants.maxExchangeRate {
-            validationError = "Exchange rate cannot exceed 10000"
-            return
-        }
+    private func formatResult(_ value: Decimal) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
+        return formatter.string(from: value as NSDecimalNumber) ?? "0"
     }
-
 
     private func saveSettings() {
-        print("🔵 Save button pressed")
-        print("🔵 Currency: '\(currencyName)'")
-        print("🔵 Exchange Rate: '\(exchangeRateText)'")
-        
-        validateInput()
-
-        guard validationError == nil else {
-            print("🔴 Validation error: \(validationError ?? "unknown")")
-            return
-        }
+        guard isValid else { return }
 
         isSaving = true
-        print("🔵 Starting save process...")
 
-        // Use a slight delay to show the saving state
+        // Simulating save delay slightly for UX
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             guard let rate = Decimal(string: self.exchangeRateText) else {
-                print("🔴 Failed to parse exchange rate")
-                self.validationError = "Invalid exchange rate"
                 self.isSaving = false
                 return
             }
 
-            print("🔵 Parsed rate: \(rate)")
-
             let settings = CurrencySettings(
-                currencyName: self.currencyName.uppercased(),
+                foreignCurrency: self.foreignCurrency,
+                localCurrency: self.localCurrency,
                 exchangeRate: rate
             )
 
-            print("🔵 Created settings: \(settings.currencyName) - \(settings.exchangeRate)")
-            print("🔵 Settings valid: \(settings.isValid)")
-
-            guard settings.isValid else {
-                print("🔴 Settings validation failed: \(settings.validationError?.description ?? "unknown")")
-                self.validationError = settings.validationError?.description ?? "Invalid settings"
-                self.isSaving = false
-                return
-            }
-
-            // Use AppState's save method to ensure proper state management
-            print("🔵 Calling appState.saveCurrencySettings...")
+            // Save via AppState
             self.appState.saveCurrencySettings(settings)
 
-            // Check if there was an error from AppState
-            if self.appState.errorMessage != nil {
-                print("🔴 AppState error: \(self.appState.errorMessage ?? "unknown")")
-                self.validationError = self.appState.errorMessage
-                self.appState.clearError()
+            if self.appState.errorMessage == nil {
+                // Success - navigate to camera
+                self.onContinueToCamera()
             } else {
-                print("✅ Settings saved successfully!")
-                print("✅ appState.currencySettings: \(self.appState.currencySettings?.currencyName ?? "nil")")
-                AppLogger.info("Settings saved successfully: \(settings.currencyName)", category: AppLogger.general)
+                // Error handling handled by AppState state, but we could show alert
+                self.validationError = self.appState.errorMessage
             }
 
             self.isSaving = false
         }
+    }
+}
+
+// MARK: - Corner Radius Helper
+struct RoundedCorner: Shape {
+    var radius: CGFloat = .infinity
+    var corners: UIRectCorner = .allCorners
+
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(
+            roundedRect: rect,
+            byRoundingCorners: corners,
+            cornerRadii: CGSize(width: radius, height: radius)
+        )
+        return Path(path.cgPath)
+    }
+}
+
+extension View {
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        clipShape(RoundedCorner(radius: radius, corners: corners))
     }
 }
 
