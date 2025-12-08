@@ -4,7 +4,12 @@
       "Bash(cd /Users/dindin/Documents/iOS Project/PriceConvert && git fetch:*)",
       "Bash(cd:*)",
       "Bash(.specify/scripts/bash/update-agent-context.sh claude)",
-      "SlashCommand(/speckit.tasks product_spec.md)"
+      "SlashCommand(/speckit.tasks product_spec.md)",
+      "Bash(cat:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(tree:*)",
+      "Bash(xcodebuild clean:*)"
     ],
     "deny": [],
     "ask": []

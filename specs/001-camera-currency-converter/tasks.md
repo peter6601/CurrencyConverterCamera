@@ -37,13 +37,13 @@
 
 - [x] T001 Create Xcode project from SwiftUI template with name `CurrencyConverterCamera`
 - [x] T002 Add Unit Test target `CurrencyConverterCameraTests` to project
-- [x] T003 Add Integration Test target `CurrencyConverterCameraIntegrationTests` (optional Phase 0, required by Phase 6)
+- [ ] T003 Add Integration Test target `CurrencyConverterCameraIntegrationTests` (optional Phase 0, required by Phase 6)
 - [x] T004 Add UI Test target `CurrencyConverterCameraUITests` to project
-- [x] T005 [P] Create folder structure in `CurrencyConverterCamera/App/`, `Models/`, `ViewModels/`, `Views/`, `Services/`, `Utilities/`, `Resources/`
+- [x] T005 [P] Create folder structure in `Product/App/`, `Models/`, `ViewModels/`, `Views/`, `Services/`, `Utilities/`, `Resources/`
 - [x] T006 [P] Create test folder structure: `CurrencyConverterCameraTests/Models/`, `ViewModels/`, `Services/`, `Resources/TestImages/`
 - [x] T007 Create first sanity test in `CurrencyConverterCameraTests/ExampleTests.swift` (1 + 1 = 2, project compiles)
 - [x] T008 Configure `.gitignore` for Xcode (Pods/, .swiftpm/, etc.)
-- [x] T009 Create `CurrencyConverterCamera/App/CurrencyConverterCameraApp.swift` app entry point
+- [x] T009 Create `Product/App/CurrencyConverterCameraApp.swift` app entry point
 
 **Gate Checkpoint**:
 - [x] T010 Run `xcodebuild test` → all tests pass (green)
@@ -113,7 +113,7 @@
 - [ ] T036 [US2] Create `CurrencyConverterCamera/Views/Components/ExchangeRateField.swift` (SwiftUI reusable component): TextField with decimal keyboard, validation feedback, range display (0.0001–10000)
 - [ ] T037 [US2] Add validation logic to `CurrencySettingsViewModel`: currencyName length ≤20, exchangeRate > 0 and ≤10000, both required to enable "Start Scan"
 - [ ] T038 [US2] Update `CurrencyConverterCameraApp.swift` to show SettingsView as initial screen on first launch (check UserDefaults for existing settings)
-- [ ] T039 [US2] Implement app state wrapper in `CurrencyConverterCamera/App/AppState.swift` (@EnvironmentObject) to manage current CurrencySettings and pass through dependency injection
+- [ ] T039 [US2] Implement app state wrapper in `Product/App/AppState.swift` (@EnvironmentObject) to manage current CurrencySettings and pass through dependency injection
 
 **Checkpoint**: User Story 2 complete
 - [ ] T040 Run `xcodebuild test -only-testing CurrencyConverterCameraTests` → all US2 unit tests pass

@@ -30,10 +30,9 @@ class CameraViewModel: NSObject, ObservableObject {
     private let appState: AppState
     private let storageService: StorageService
 
-    private var processingQueue = DispatchQueue(label: "com.currencyconvertercamera.processing", attributes: .concurrent)
     private var processingTask: Task<Void, Never>?
     private var lastProcessingTime: Date?
-    private let processingInterval: TimeInterval = 0.1  // 每秒處理一次
+    private let processingInterval: TimeInterval = 0.1  // 每0.1秒處理一次
 
     // MARK: - Initialization
 
@@ -106,7 +105,7 @@ class CameraViewModel: NSObject, ObservableObject {
             return
         }
         
-        // 節流控制：檢查是否距離上次處理已經過了 1 秒
+        // 節流控制：檢查是否距離上次處理已經過了 x 秒
         let now = Date()
         if let lastTime = lastProcessingTime {
             let timeSinceLastProcessing = now.timeIntervalSince(lastTime)
@@ -183,17 +182,7 @@ class CameraViewModel: NSObject, ObservableObject {
                 sourceCurrency: settings.currencyName,
                 targetCurrency: settings.currencyName,
                 exchangeRate: settings.exchangeRate,
-                confidence: {
-                    if let number = firstDetection.confidence as? NSNumber {
-                        return number.doubleValue
-                    } else if let decimal = firstDetection.confidence as? Decimal {
-                        return NSDecimalNumber(decimal: decimal).doubleValue
-                    } else if let doubleValue = firstDetection.confidence as? Double {
-                        return doubleValue
-                    } else {
-                        return 0.0
-                    }
-                }()
+                confidence: firstDetection.confidence
             )
 
             DispatchQueue.main.async {

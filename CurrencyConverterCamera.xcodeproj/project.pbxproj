@@ -73,7 +73,6 @@
 		2DA87DFE2EE2B07D00C32679 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87DD12EE2B07D00C32679 /* SettingsView.swift */; };
 		2DA87E002EE2B0D100C32679 /* InitialSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87DFF2EE2B0D100C32679 /* InitialSetupView.swift */; };
 		2DA87E022EE2B14300C32679 /* DEBUG_SAVE_BUTTON.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E012EE2B14300C32679 /* DEBUG_SAVE_BUTTON.md */; };
-		2DA87E062EE2B22900C32679 /* .gitignore2 in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E052EE2B22900C32679 /* .gitignore2 */; };
 		2DA87E082EE2B28600C32679 /* GIT_COMMIT_GUIDE.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E072EE2B28600C32679 /* GIT_COMMIT_GUIDE.md */; };
 		2DA87E0A2EE2B2C000C32679 /* git-commit-sequence.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E092EE2B2C000C32679 /* git-commit-sequence.sh */; };
 		2DA87E0C2EE2B2DB00C32679 /* QUICK_START_GIT.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E0B2EE2B2DB00C32679 /* QUICK_START_GIT.md */; };
@@ -91,6 +90,7 @@
 		2DA87E2A2EE2B94E00C32679 /* RUN_TESTS_NOW.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E292EE2B94E00C32679 /* RUN_TESTS_NOW.md */; };
 		2DA87E2D2EE2BAC300C32679 /* FINAL_TEST_FIX_REPORT.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E2C2EE2BAC300C32679 /* FINAL_TEST_FIX_REPORT.md */; };
 		2DA87E2F2EE2BAD400C32679 /* VERIFY_NOW.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E2E2EE2BAD400C32679 /* VERIFY_NOW.md */; };
+		2DA87E312EE2D88900C32679 /* WARNING_FIXES_SUMMARY.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E302EE2D88900C32679 /* WARNING_FIXES_SUMMARY.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,7 +180,6 @@
 		2DA87DD82EE2B07D00C32679 /* specsupdatescamera-throttling-update.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "specsupdatescamera-throttling-update.md"; sourceTree = "<group>"; };
 		2DA87DFF2EE2B0D100C32679 /* InitialSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupView.swift; sourceTree = "<group>"; };
 		2DA87E012EE2B14300C32679 /* DEBUG_SAVE_BUTTON.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DEBUG_SAVE_BUTTON.md; sourceTree = "<group>"; };
-		2DA87E052EE2B22900C32679 /* .gitignore2 */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore2; sourceTree = "<group>"; };
 		2DA87E072EE2B28600C32679 /* GIT_COMMIT_GUIDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = GIT_COMMIT_GUIDE.md; sourceTree = "<group>"; };
 		2DA87E092EE2B2C000C32679 /* git-commit-sequence.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "git-commit-sequence.sh"; sourceTree = "<group>"; };
 		2DA87E0B2EE2B2DB00C32679 /* QUICK_START_GIT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = QUICK_START_GIT.md; sourceTree = "<group>"; };
@@ -194,12 +193,12 @@
 		2DA87E1B2EE2B5EA00C32679 /* DELETE_TESTS_GUIDE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DELETE_TESTS_GUIDE.md; sourceTree = "<group>"; };
 		2DA87E1D2EE2B63C00C32679 /* FIX_REMAINING_TESTS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = FIX_REMAINING_TESTS.md; sourceTree = "<group>"; };
 		2DA87E1F2EE2B68A00C32679 /* TEST_FIX_EXECUTION.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TEST_FIX_EXECUTION.md; sourceTree = "<group>"; };
-		2DA87E212EE2B6A100C32679 /* QUICK_FIX_CARD.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = QUICK_FIX_CARD.md; sourceTree = "<group>"; };
 		2DA87E272EE2B92E00C32679 /* TEST_FIXES_COMPLETED.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TEST_FIXES_COMPLETED.md; sourceTree = "<group>"; };
 		2DA87E292EE2B94E00C32679 /* RUN_TESTS_NOW.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = RUN_TESTS_NOW.md; sourceTree = "<group>"; };
-		2DA87E2B2EE2B9DE00C32679 /* CurrencyConverterCamera.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = file; path = CurrencyConverterCamera.xctestplan; sourceTree = "<group>"; };
+		2DA87E2B2EE2B9DE00C32679 /* CurrencyConverterCamera.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CurrencyConverterCamera.xctestplan; sourceTree = "<group>"; };
 		2DA87E2C2EE2BAC300C32679 /* FINAL_TEST_FIX_REPORT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = FINAL_TEST_FIX_REPORT.md; sourceTree = "<group>"; };
 		2DA87E2E2EE2BAD400C32679 /* VERIFY_NOW.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = VERIFY_NOW.md; sourceTree = "<group>"; };
+		2DA87E302EE2D88900C32679 /* WARNING_FIXES_SUMMARY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = WARNING_FIXES_SUMMARY.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +264,7 @@
 			children = (
 				2DA87CA92EE0012200C32679 /* CameraViewModel.swift */,
 				2DA87CAA2EE0012200C32679 /* SettingsViewModel.swift */,
+				2DA87E302EE2D88900C32679 /* WARNING_FIXES_SUMMARY.md */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -407,14 +407,12 @@
 			isa = PBXGroup;
 			children = (
 				2DA87E2B2EE2B9DE00C32679 /* CurrencyConverterCamera.xctestplan */,
-				2DA87E052EE2B22900C32679 /* .gitignore2 */,
 				2DA87DD92EE2B07D00C32679 /* Specs */,
 				2DA87CB52EE0012200C32679 /* Product */,
 				2DA87D212EE0018A00C32679 /* CurrencyConverterCameraTests */,
 				2DA87C972EE0011600C32679 /* CurrencyConverterCamera.app */,
 				2DA87C982EE0011600C32679 /* CurrencyConverterCameraTests.xctest */,
 				2DA87C992EE0011600C32679 /* CurrencyConverterCameraUITests.xctest */,
-				2DA87E212EE2B6A100C32679 /* QUICK_FIX_CARD.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -530,7 +528,6 @@
 				2DA87DDC2EE2B07D00C32679 /* specsdata-model.md in Resources */,
 				2DA87E082EE2B28600C32679 /* GIT_COMMIT_GUIDE.md in Resources */,
 				2DA87DDD2EE2B07D00C32679 /* QUICK_START.md in Resources */,
-				2DA87E062EE2B22900C32679 /* .gitignore2 in Resources */,
 				2DA87DDE2EE2B07D00C32679 /* PHASE_2_README.md in Resources */,
 				2DA87DDF2EE2B07D00C32679 /* specsORGANIZATION_REPORT.md in Resources */,
 				2DA87DE02EE2B07D00C32679 /* INFO_PLIST_SETUP.md in Resources */,
@@ -564,6 +561,7 @@
 				2DA87DF42EE2B07D00C32679 /* CAMERA_THROTTLING_UPDATE.md in Resources */,
 				2DA87E142EE2B42200C32679 /* GIT_AND_TESTING_README.md in Resources */,
 				2DA87DF52EE2B07D00C32679 /* PHASE_4_IMPLEMENTATION.md in Resources */,
+				2DA87E312EE2D88900C32679 /* WARNING_FIXES_SUMMARY.md in Resources */,
 				2DA87DF62EE2B07D00C32679 /* requirements.md in Resources */,
 				2DA87E202EE2B68A00C32679 /* TEST_FIX_EXECUTION.md in Resources */,
 				2DA87DF72EE2B07D00C32679 /* CAMERA_FIX_QUICK_GUIDE.md in Resources */,

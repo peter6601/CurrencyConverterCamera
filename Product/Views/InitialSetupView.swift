@@ -19,7 +19,10 @@ struct InitialSetupView: View {
 
     var isValid: Bool {
         let currencyValid = !currencyName.isEmpty && currencyName.count <= 20 && currencyName.allSatisfy { $0.isLetter }
-        let rateValid = !exchangeRateText.isEmpty && Decimal(string: exchangeRateText) != nil && Decimal(string: exchangeRateText)! > 0
+        guard let rate = Decimal(string: exchangeRateText) else {
+            return false
+        }
+        let rateValid = !exchangeRateText.isEmpty && rate > 0
         return currencyValid && rateValid
     }
     
@@ -67,7 +70,7 @@ struct InitialSetupView: View {
                                 .padding()
                                 .background(Color.gray.opacity(0.1))
                                 .cornerRadius(8)
-                                .onChange(of: currencyName) { newValue in
+                                .onChange(of: currencyName) { _, newValue in
                                     currencyName = String(newValue.filter { $0.isLetter }.prefix(20))
                                     validateInput()
                                 }
@@ -88,7 +91,7 @@ struct InitialSetupView: View {
                                 .padding()
                                 .background(Color.gray.opacity(0.1))
                                 .cornerRadius(8)
-                                .onChange(of: exchangeRateText) { newValue in
+                                .onChange(of: exchangeRateText) { _, _ in
                                     validateInput()
                                 }
 

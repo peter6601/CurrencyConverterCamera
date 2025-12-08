@@ -22,7 +22,7 @@ This guide walks you through setting up the development environment and running 
 
 ### 1. Open Xcode Project
 ```bash
-cd /Users/dindin/Documents/iOS\ Project/PriceConvert
+cd /Users/dindin/Documents/iOS\ Project/CurrencyConverterCamera
 open CurrencyConverterCamera.xcodeproj
 ```
 

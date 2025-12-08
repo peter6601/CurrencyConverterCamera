@@ -31,24 +31,24 @@ final class StorageServiceTests: XCTestCase {
         let settings = TestHelper.createValidSettings(currency: "USD", rate: 31.35)
 
         try storageService.saveCurrencySettings(settings)
-        let loaded =   storageService.loadCurrencySettings()
+        let loaded = storageService.loadCurrencySettings()
 
-        XCTAssertEqual(loaded!.currencyName, "USD")
-        XCTAssertEqual(loaded!.exchangeRate, 31.35)
+        XCTAssertEqual(loaded?.currencyName, "USD")
+        XCTAssertEqual(loaded?.exchangeRate, 31.35)
     }
 
     func testSaveCurrencySettingsWithValidation() throws {
         let settings = TestHelper.createValidSettings(currency: "EUR", rate: 35.50)
 
         try storageService.saveCurrencySettings(settings)
-        let loaded = try storageService.loadCurrencySettings()
+        let loaded = storageService.loadCurrencySettings()
 
-        XCTAssertTrue(loaded!.isValid)
+        XCTAssertTrue(loaded?.isValid ?? false)
     }
 
-    func testLoadCurrencySettingsWhenNeverSaved() throws {
+    func testLoadCurrencySettingsWhenNeverSaved() {
         // Should not throw, might return nil or default
-        let result = try storageService.loadCurrencySettings()
+        let result = storageService.loadCurrencySettings()
         XCTAssertNil(result)
     }
 
@@ -59,7 +59,7 @@ final class StorageServiceTests: XCTestCase {
         let settings2 = TestHelper.createValidSettings(currency: "GBP", rate: 45.20)
         try storageService.saveCurrencySettings(settings2)
 
-        let loaded = try storageService.loadCurrencySettings()
+        let loaded = storageService.loadCurrencySettings()
         XCTAssertEqual(loaded?.currencyName, "GBP")
         XCTAssertEqual(loaded?.exchangeRate, 45.20)
     }
@@ -71,14 +71,19 @@ final class StorageServiceTests: XCTestCase {
         try storageService.saveCurrencySettings(settings)
         let after = Date()
 
-        let loaded = try storageService.loadCurrencySettings()
+        let loaded = storageService.loadCurrencySettings()
         XCTAssertNotNil(loaded?.lastUpdated)
+        
+        guard let loadedSettings = loaded else {
+            XCTFail("Failed to load settings")
+            return
+        }
         
         // Allow 1 second tolerance for timestamp comparison
         let tolerance: TimeInterval = 1.0
-        XCTAssertTrue(loaded!.lastUpdated.timeIntervalSince(before) >= -tolerance, 
+        XCTAssertTrue(loadedSettings.lastUpdated.timeIntervalSince(before) >= -tolerance, 
                       "Timestamp should be after 'before'")
-        XCTAssertTrue(loaded!.lastUpdated.timeIntervalSince(after) <= tolerance,
+        XCTAssertTrue(loadedSettings.lastUpdated.timeIntervalSince(after) <= tolerance,
                       "Timestamp should be before 'after'")
     }
 
@@ -88,7 +93,7 @@ final class StorageServiceTests: XCTestCase {
         let record = TestHelper.createConversionRecord(original: 3500, converted: 770.00)
 
         try storageService.addConversionRecord(record)
-        let history = try storageService.loadConversionHistory()
+        let history = storageService.loadConversionHistory()
 
         XCTAssertEqual(history.count, 1)
         XCTAssertEqual(history[0].originalPrice, 3500)
@@ -101,7 +106,7 @@ final class StorageServiceTests: XCTestCase {
             try storageService.addConversionRecord(record)
         }
 
-        let history = try storageService.loadConversionHistory()
+        let history = storageService.loadConversionHistory()
         XCTAssertEqual(history.count, 5)
     }
 
@@ -115,7 +120,7 @@ final class StorageServiceTests: XCTestCase {
         try storageService.addConversionRecord(record2)
         try storageService.addConversionRecord(record3)
 
-        let history = try storageService.loadConversionHistory()
+        let history = storageService.loadConversionHistory()
 
         XCTAssertEqual(history[0].originalPrice, 2000)  // Most recent
         XCTAssertEqual(history[1].originalPrice, 3000)  // Middle
@@ -132,7 +137,7 @@ final class StorageServiceTests: XCTestCase {
             try storageService.addConversionRecord(record)
         }
 
-        let history = try storageService.loadConversionHistory()
+        let history = storageService.loadConversionHistory()
 
         // Should keep only 50 most recent
         XCTAssertEqual(history.count, 50, "Should keep exactly 50 records")
@@ -151,13 +156,13 @@ final class StorageServiceTests: XCTestCase {
         }
 
         try storageService.clearHistory()
-        let history = try storageService.loadConversionHistory()
+        let history = storageService.loadConversionHistory()
 
         XCTAssertEqual(history.count, 0)
     }
 
-    func testLoadHistoryWhenEmpty() throws {
-        let history = try storageService.loadConversionHistory()
+    func testLoadHistoryWhenEmpty() {
+        let history = storageService.loadConversionHistory()
         XCTAssertEqual(history.count, 0)
     }
 
@@ -185,7 +190,7 @@ final class StorageServiceTests: XCTestCase {
         try storageService.addConversionRecord(record2)
         try storageService.addConversionRecord(record3)
 
-        let history = try storageService.loadConversionHistory()
+        let history = storageService.loadConversionHistory()
 
         XCTAssertEqual(history.count, 3, "Should have 3 records")
         XCTAssertEqual(history[0].currencyName, "EUR", "Most recent should be EUR")
@@ -204,7 +209,7 @@ final class StorageServiceTests: XCTestCase {
         )
 
         try storageService.addConversionRecord(originalRecord)
-        let history = try storageService.loadConversionHistory()
+        let history = storageService.loadConversionHistory()
         let loadedRecord = history[0]
 
         XCTAssertEqual(loadedRecord.originalPrice, originalRecord.originalPrice)
@@ -220,7 +225,7 @@ final class StorageServiceTests: XCTestCase {
         try storageService.addConversionRecord(record1)
         try storageService.addConversionRecord(record2)
 
-        let history = try storageService.loadConversionHistory()
+        let history = storageService.loadConversionHistory()
 
         XCTAssertNotEqual(history[0].id, history[1].id)
     }
@@ -230,7 +235,7 @@ final class StorageServiceTests: XCTestCase {
         let record = TestHelper.createConversionRecord(timestamp: specificTime)
 
         try storageService.addConversionRecord(record)
-        let history = try storageService.loadConversionHistory()
+        let history = storageService.loadConversionHistory()
 
         // Allow small time difference due to encoding/decoding
         let timeDifference = abs(history[0].timestamp.timeIntervalSince(specificTime))
@@ -247,7 +252,7 @@ final class StorageServiceTests: XCTestCase {
         )
 
         try storageService.addConversionRecord(record)
-        let history = try storageService.loadConversionHistory()
+        let history = storageService.loadConversionHistory()
 
         XCTAssertEqual(history[0].originalPrice, Decimal(0.01))
     }
@@ -260,7 +265,7 @@ final class StorageServiceTests: XCTestCase {
         )
 
         try storageService.addConversionRecord(record)
-        let history = try storageService.loadConversionHistory()
+        let history = storageService.loadConversionHistory()
 
         XCTAssertEqual(history[0].originalPrice, Decimal(999999.99))
     }
@@ -270,7 +275,7 @@ final class StorageServiceTests: XCTestCase {
         let settings = CurrencySettings(currencyName: longName, exchangeRate: 0.22)
 
         try storageService.saveCurrencySettings(settings)
-        let loaded = try storageService.loadCurrencySettings()
+        let loaded = storageService.loadCurrencySettings()
 
         XCTAssertEqual(loaded?.currencyName, longName)
     }
@@ -291,7 +296,7 @@ final class StorageServiceTests: XCTestCase {
 
         dispatchGroup.wait()
 
-        let history = try storageService.loadConversionHistory()
+        let history = storageService.loadConversionHistory()
         XCTAssertEqual(history.count, 10)
     }
 
@@ -301,12 +306,12 @@ final class StorageServiceTests: XCTestCase {
         let record = TestHelper.createConversionRecord()
         try storageService.addConversionRecord(record)
 
-        var historyBefore = try storageService.loadConversionHistory()
+        let historyBefore = storageService.loadConversionHistory()
         XCTAssertEqual(historyBefore.count, 1)
 
         try storageService.clearHistory()
 
-        let historyAfter = try storageService.loadConversionHistory()
+        let historyAfter = storageService.loadConversionHistory()
         XCTAssertEqual(historyAfter.count, 0)
     }
 

@@ -47,7 +47,7 @@ struct CameraView: View {
         .onDisappear {
             viewModel.stopCamera()
         }
-        .onChange(of: isConversionEnabled) { enabled in
+        .onChange(of: isConversionEnabled) { _, enabled in
             viewModel.isConversionEnabled = enabled
         }
     }

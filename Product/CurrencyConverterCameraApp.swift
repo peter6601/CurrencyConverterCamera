@@ -62,16 +62,11 @@ class AppState: ObservableObject {
     func loadCurrencySettings() {
         AppLogger.debug("Loading currency settings...", category: AppLogger.storage)
         
-        do {
-            if let settings =  storageService.loadCurrencySettings() {
-                self.currencySettings = settings
-                AppLogger.info("Currency settings loaded: \(settings.currencyName)", category: AppLogger.storage)
-            } else {
-                AppLogger.info("No saved currency settings found", category: AppLogger.storage)
-            }
-        } catch {
-            AppLogger.error("Failed to load currency settings", error: error, category: AppLogger.storage)
-            self.errorMessage = "Failed to load settings"
+        if let settings = storageService.loadCurrencySettings() {
+            self.currencySettings = settings
+            AppLogger.info("Currency settings loaded: \(settings.currencyName)", category: AppLogger.storage)
+        } else {
+            AppLogger.info("No saved currency settings found", category: AppLogger.storage)
         }
     }
     
@@ -102,14 +97,8 @@ class AppState: ObservableObject {
     func loadConversionHistory() {
         AppLogger.debug("Loading conversion history...", category: AppLogger.storage)
         
-        do {
-            self.conversionHistory = try storageService.loadConversionHistory()
-            AppLogger.info("Loaded \(conversionHistory.count) conversion records", category: AppLogger.storage)
-        } catch {
-            AppLogger.error("Failed to load conversion history", error: error, category: AppLogger.storage)
-            self.errorMessage = "Failed to load history"
-            self.conversionHistory = []
-        }
+        self.conversionHistory = storageService.loadConversionHistory()
+        AppLogger.info("Loaded \(conversionHistory.count) conversion records", category: AppLogger.storage)
     }
     
     /// Add a new conversion record to history

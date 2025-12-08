@@ -7,7 +7,7 @@ Version: 1.0.0 (NEW)
 - Governance procedures documented
 -->
 
-# PriceConvert Constitution
+# CurrencyConverterCamera Constitution
 
 ## Core Principles
 
@@ -60,7 +60,7 @@ All code targets iOS 15.0+ using native frameworks (SwiftUI + UIKit for camera).
 
 ## Governance
 
-This constitution supersedes all other development practices for PriceConvert. Amendments require:
+This constitution supersedes all other development practices for CurrencyConverterCamera. Amendments require:
 
 1. **Documentation**: Describe the principle change and rationale
 2. **Impact Assessment**: Identify affected templates, workflows, and code

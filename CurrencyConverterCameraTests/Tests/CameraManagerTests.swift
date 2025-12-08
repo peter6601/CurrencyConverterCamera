@@ -13,10 +13,12 @@ internal import Combine
 final class CameraManagerTests: XCTestCase {
 
     var cameraManager: CameraManager!
+    var cancellables: Set<AnyCancellable>!
 
     override func setUp() {
         super.setUp()
         cameraManager = CameraManager()
+        cancellables = Set<AnyCancellable>()
     }
 
     override func tearDown() {
@@ -25,6 +27,7 @@ final class CameraManagerTests: XCTestCase {
             cameraManager.stopSession()
         }
         cameraManager = nil
+        cancellables = nil
     }
 
     // MARK: - Initialization Tests
@@ -42,9 +45,6 @@ final class CameraManagerTests: XCTestCase {
     // MARK: - Camera Permission Tests
 
     func testRequestCameraPermissionWhenNotDetermined() {
-        // Save original status
-        let originalStatus = AVCaptureDevice.authorizationStatus(for: .video)
-
         // Request permission
         cameraManager.requestCameraPermission()
 
@@ -58,15 +58,16 @@ final class CameraManagerTests: XCTestCase {
         let expectation = XCTestExpectation(description: "authorizationStatus published")
 
         var publishedStatus: AVAuthorizationStatus?
-        let cancellable = cameraManager.$authorizationStatus
+        
+        cameraManager.$authorizationStatus
             .sink { status in
                 publishedStatus = status
                 expectation.fulfill()
             }
+            .store(in: &cancellables)
 
         wait(for: [expectation], timeout: 1.0)
         XCTAssertNotNil(publishedStatus)
-        cancellable.cancel()
     }
 
     // MARK: - Session Management Tests
@@ -136,7 +137,7 @@ final class CameraManagerTests: XCTestCase {
 
 // MARK: - Mock Delegate for Testing
 
-class MockCameraManagerDelegate: CameraManagerDelegate {
+final class MockCameraManagerDelegate: CameraManagerDelegate {
     var didCaptureFrameCalled = false
     var didUpdateAuthorizationStatusCalled = false
     var didEncounterErrorCalled = false

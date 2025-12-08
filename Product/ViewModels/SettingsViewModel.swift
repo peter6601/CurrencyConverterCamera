@@ -91,15 +91,10 @@ class SettingsViewModel: ObservableObject {
     func loadSettings() {
         AppLogger.debug("Loading settings in ViewModel", category: AppLogger.general)
 
-        do {
-            if let settings = try storageService.loadCurrencySettings() {
-                self.currencyName = settings.currencyName
-                self.exchangeRateText = String(format: "%.4f", settings.exchangeRate.doubleValue)
-                AppLogger.info("Settings loaded: \(settings.currencyName)", category: AppLogger.general)
-            }
-        } catch {
-            AppLogger.error("Failed to load settings", error: error, category: AppLogger.general)
-            self.validationError = .storageError("Failed to load settings")
+        if let settings = storageService.loadCurrencySettings() {
+            self.currencyName = settings.currencyName
+            self.exchangeRateText = String(format: "%.4f", settings.exchangeRate.doubleValue)
+            AppLogger.info("Settings loaded: \(settings.currencyName)", category: AppLogger.general)
         }
     }
 
