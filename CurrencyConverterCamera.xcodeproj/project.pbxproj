@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2DA87CB72EE0012200C32679 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87CA22EE0012200C32679 /* StorageService.swift */; };
 		2DA87CB82EE0012200C32679 /* ConversionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87C9C2EE0012200C32679 /* ConversionResult.swift */; };
-		2DA87CB92EE0012200C32679 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87CAA2EE0012200C32679 /* SettingsViewModel.swift */; };
 		2DA87CBA2EE0012200C32679 /* CameraFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87C9A2EE0012200C32679 /* CameraFrame.swift */; };
 		2DA87CBB2EE0012200C32679 /* ConversionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87CA12EE0012200C32679 /* ConversionEngine.swift */; };
 		2DA87CBC2EE0012200C32679 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87CA92EE0012200C32679 /* CameraViewModel.swift */; };
@@ -39,7 +38,6 @@
 		2DA87DFB2EE2B07D00C32679 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87DBF2EE2B07D00C32679 /* CameraView.swift */; };
 		2DA87DFC2EE2B07D00C32679 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87DBE2EE2B07D00C32679 /* CameraPreviewView.swift */; };
 		2DA87DFD2EE2B07D00C32679 /* CurrencyInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87DC12EE2B07D00C32679 /* CurrencyInputField.swift */; };
-		2DA87DFE2EE2B07D00C32679 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87DD12EE2B07D00C32679 /* SettingsView.swift */; };
 		2DA87E002EE2B0D100C32679 /* InitialSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA87DFF2EE2B0D100C32679 /* InitialSetupView.swift */; };
 		2DA87E282EE2B92E00C32679 /* TEST_FIXES_COMPLETED.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E272EE2B92E00C32679 /* TEST_FIXES_COMPLETED.md */; };
 		2DA87E2A2EE2B94E00C32679 /* RUN_TESTS_NOW.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E292EE2B94E00C32679 /* RUN_TESTS_NOW.md */; };
@@ -47,6 +45,9 @@
 		2DA87E2F2EE2BAD400C32679 /* VERIFY_NOW.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E2E2EE2BAD400C32679 /* VERIFY_NOW.md */; };
 		2DA87E312EE2D88900C32679 /* WARNING_FIXES_SUMMARY.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E302EE2D88900C32679 /* WARNING_FIXES_SUMMARY.md */; };
 		2DF736CE2EE6D76E000CCE2E /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2DF736CD2EE6D76E000CCE2E /* Localizable.xcstrings */; };
+		2DF736D02EE741F2000CCE2E /* PhotoScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF736CF2EE741F2000CCE2E /* PhotoScanViewModel.swift */; };
+		2DF736D22EE74217000CCE2E /* PhotoScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF736D12EE74217000CCE2E /* PhotoScanView.swift */; };
+		2DF736D42EE745DB000CCE2E /* PriceFilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF736D32EE745DB000CCE2E /* PriceFilterService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,7 +84,6 @@
 		2DA87CA62EE0012200C32679 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2DA87CA72EE0012200C32679 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		2DA87CA92EE0012200C32679 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
-		2DA87CAA2EE0012200C32679 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		2DA87CAC2EE0012200C32679 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DA87CB32EE0012200C32679 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2DA87CB42EE0012200C32679 /* CurrencyConverterCameraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterCameraApp.swift; sourceTree = "<group>"; };
@@ -102,7 +102,6 @@
 		2DA87DC12EE2B07D00C32679 /* CurrencyInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyInputField.swift; sourceTree = "<group>"; };
 		2DA87DC32EE2B07D00C32679 /* DetectionOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectionOverlayView.swift; sourceTree = "<group>"; };
 		2DA87DC42EE2B07D00C32679 /* ExchangeRateInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateInputField.swift; sourceTree = "<group>"; };
-		2DA87DD12EE2B07D00C32679 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2DA87DFF2EE2B0D100C32679 /* InitialSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialSetupView.swift; sourceTree = "<group>"; };
 		2DA87E272EE2B92E00C32679 /* TEST_FIXES_COMPLETED.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TEST_FIXES_COMPLETED.md; sourceTree = "<group>"; };
 		2DA87E292EE2B94E00C32679 /* RUN_TESTS_NOW.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = RUN_TESTS_NOW.md; sourceTree = "<group>"; };
@@ -111,6 +110,9 @@
 		2DA87E2E2EE2BAD400C32679 /* VERIFY_NOW.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = VERIFY_NOW.md; sourceTree = "<group>"; };
 		2DA87E302EE2D88900C32679 /* WARNING_FIXES_SUMMARY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = WARNING_FIXES_SUMMARY.md; sourceTree = "<group>"; };
 		2DF736CD2EE6D76E000CCE2E /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = SOURCE_ROOT; };
+		2DF736CF2EE741F2000CCE2E /* PhotoScanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoScanViewModel.swift; sourceTree = "<group>"; };
+		2DF736D12EE74217000CCE2E /* PhotoScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoScanView.swift; sourceTree = "<group>"; };
+		2DF736D32EE745DB000CCE2E /* PriceFilterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceFilterService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,8 +178,10 @@
 			isa = PBXGroup;
 			children = (
 				2DA87CA92EE0012200C32679 /* CameraViewModel.swift */,
-				2DA87CAA2EE0012200C32679 /* SettingsViewModel.swift */,
 				2DA87E302EE2D88900C32679 /* WARNING_FIXES_SUMMARY.md */,
+				2DF736CF2EE741F2000CCE2E /* PhotoScanViewModel.swift */,
+				2DF736D12EE74217000CCE2E /* PhotoScanView.swift */,
+				2DF736D32EE745DB000CCE2E /* PriceFilterService.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -190,7 +194,6 @@
 				2DA87DC12EE2B07D00C32679 /* CurrencyInputField.swift */,
 				2DA87DC32EE2B07D00C32679 /* DetectionOverlayView.swift */,
 				2DA87DC42EE2B07D00C32679 /* ExchangeRateInputField.swift */,
-				2DA87DD12EE2B07D00C32679 /* SettingsView.swift */,
 				2DA87DFF2EE2B0D100C32679 /* InitialSetupView.swift */,
 				2DA87CAC2EE0012200C32679 /* Assets.xcassets */,
 			);
@@ -400,10 +403,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DA87CB72EE0012200C32679 /* StorageService.swift in Sources */,
+				2DF736D22EE74217000CCE2E /* PhotoScanView.swift in Sources */,
 				2DA87CB82EE0012200C32679 /* ConversionResult.swift in Sources */,
-				2DA87CB92EE0012200C32679 /* SettingsViewModel.swift in Sources */,
 				2DA87CBA2EE0012200C32679 /* CameraFrame.swift in Sources */,
 				2DA87CBB2EE0012200C32679 /* ConversionEngine.swift in Sources */,
+				2DF736D42EE745DB000CCE2E /* PriceFilterService.swift in Sources */,
 				2DA87CBC2EE0012200C32679 /* CameraViewModel.swift in Sources */,
 				2DA87CBD2EE0012200C32679 /* VisionService.swift in Sources */,
 				2DA87CBF2EE0012200C32679 /* CurrencySettings.swift in Sources */,
@@ -417,10 +421,10 @@
 				2DA87DFB2EE2B07D00C32679 /* CameraView.swift in Sources */,
 				2DA87DFC2EE2B07D00C32679 /* CameraPreviewView.swift in Sources */,
 				2DA87DFD2EE2B07D00C32679 /* CurrencyInputField.swift in Sources */,
-				2DA87DFE2EE2B07D00C32679 /* SettingsView.swift in Sources */,
 				2DA87CC82EE0012200C32679 /* ContentView.swift in Sources */,
 				2DA87E002EE2B0D100C32679 /* InitialSetupView.swift in Sources */,
 				2DA87CC92EE0012200C32679 /* ConversionRecord.swift in Sources */,
+				2DF736D02EE741F2000CCE2E /* PhotoScanViewModel.swift in Sources */,
 				2DA87CCA2EE0012200C32679 /* CameraManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
