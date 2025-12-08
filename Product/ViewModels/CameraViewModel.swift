@@ -21,6 +21,8 @@ class CameraViewModel: NSObject, ObservableObject {
     @Published var conversionError: String?
     @Published var isConversionEnabled = false  // Controls whether detection happens
     @Published var isSessionRunning = false  // Camera session status
+    @Published var isSizeFilterEnabled = true  // Controls size filtering (height > 1/10)
+    @Published var isThrottlingEnabled = false  // Controls frame processing throttling
 
     // MARK: - Private Properties
 
@@ -32,7 +34,7 @@ class CameraViewModel: NSObject, ObservableObject {
 
     private var processingTask: Task<Void, Never>?
     private var lastProcessingTime: Date?
-    private let processingInterval: TimeInterval = 0.01  // 每0.1秒處理一次
+    private let processingInterval: TimeInterval = 0.1  // 每0.1秒處理一次（當啟用節流時）
 
     // MARK: - Initialization
 
@@ -107,20 +109,21 @@ class CameraViewModel: NSObject, ObservableObject {
             return
         }
 
-        // 節流控制：檢查是否距離上次處理已經過了 x 秒
-        let now = Date()
-        if let lastTime = lastProcessingTime {
-            let timeSinceLastProcessing = now.timeIntervalSince(lastTime)
-            if timeSinceLastProcessing < processingInterval {
-                // 還不到 1 秒，跳過這一幀
-                return
+        // 節流控制：檢查是否距離上次處理已經過了 x 秒（如果啟用節流）
+        if isThrottlingEnabled {
+            let now = Date()
+            if let lastTime = lastProcessingTime {
+                let timeSinceLastProcessing = now.timeIntervalSince(lastTime)
+                if timeSinceLastProcessing < processingInterval {
+                    // 還不到設定的時間間隔，跳過這一幀
+                    return
+                }
             }
+            // 更新最後處理時間
+            lastProcessingTime = now
         }
 
         guard !isProcessing else { return }
-
-        // 更新最後處理時間
-        lastProcessingTime = now
 
         DispatchQueue.main.async {
             self.isProcessing = true
@@ -130,24 +133,58 @@ class CameraViewModel: NSObject, ObservableObject {
             do {
                 // Recognize text from frame
                 let detectedNumbers = try await visionService.recognizeText(from: pixelBuffer)
+                
+                AppLogger.debug(
+                    "Initial detections: \(detectedNumbers.count)",
+                    category: AppLogger.general
+                )
 
                 // Deduplicate and filter
                 let filtered = visionService.deduplicateDetections(detectedNumbers)
-                let highConfidence = visionService.filterByConfidence(filtered, threshold: 0.7)
+                AppLogger.debug(
+                    "After deduplication: \(filtered.count)",
+                    category: AppLogger.general
+                )
+                
+                let highConfidence = visionService.filterByConfidence(filtered, threshold: 0.9)
+                AppLogger.debug(
+                    "After confidence filter (>0.9): \(highConfidence.count)",
+                    category: AppLogger.general
+                )
+                
+                // Filter by size: only keep detections where height > 1/10 of screen height
+                let sizeFiltered: [DetectedNumber]
+                if self.isSizeFilterEnabled {
+                    sizeFiltered = highConfidence.filter { detection in
+                        let height = detection.boundingBox.height
+                        let meetsThreshold = height > (1.0 / 10.0)
+                        AppLogger.debug(
+                            "Detection: value=\(detection.value), height=\(height), passes=\(meetsThreshold)",
+                            category: AppLogger.general
+                        )
+                        return meetsThreshold
+                    }
+                    AppLogger.debug(
+                        "Size filter: \(highConfidence.count) -> \(sizeFiltered.count) detections",
+                        category: AppLogger.general
+                    )
+                } else {
+                    sizeFiltered = highConfidence
+                }
 
                 DispatchQueue.main.async {
-                    self.detectedNumbers = highConfidence
+                    self.detectedNumbers = sizeFiltered
 
                     // Update frame
                     self.currentFrame = CameraFrame(
                         size: CGSize(
                             width: CVPixelBufferGetWidth(pixelBuffer),
                             height: CVPixelBufferGetHeight(pixelBuffer)),
-                        detectedNumbers: highConfidence
+                        detectedNumbers: sizeFiltered
                     )
 
                     // Process conversions
-                    self.processDetections(highConfidence)
+                    self.processDetections(sizeFiltered)
 
                     self.isProcessing = false
                 }

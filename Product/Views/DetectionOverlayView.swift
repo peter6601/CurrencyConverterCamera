@@ -19,7 +19,9 @@ struct DetectionOverlayView: View {
             for detection in detectedNumbers {
                 let rect = detection.boundingBox
                 let x = rect.minX * canvasSize.width
-                let y = rect.minY * canvasSize.height
+                // Vision uses bottom-left origin, but Canvas uses top-left
+                // So we need to flip the Y coordinate
+                let y = (1.0 - rect.minY - rect.height) * canvasSize.height
                 let width = rect.width * canvasSize.width
                 let height = rect.height * canvasSize.height
 
@@ -60,13 +62,26 @@ struct DetectionOverlayView: View {
                     // 計算轉換金額
                     let convertedValue = detectedValueDouble * exchangeRateDouble
                     
-                    // 格式化顯示
-                    let convertedText = String(format: "NT$ %.2f", convertedValue)
+                    // 格式化顯示（根據金額大小調整顯示格式）
+                    let convertedText: String
+                    if convertedValue >= 10000 {
+                        convertedText = String(format: "NT$ %.0f", convertedValue)
+                    } else if convertedValue >= 100 {
+                        convertedText = String(format: "NT$ %.1f", convertedValue)
+                    } else {
+                        convertedText = String(format: "NT$ %.2f", convertedValue)
+                    }
                     
-                    // 背景框
-                    let textSize = CGSize(width: 120, height: 30)
+                    // 原始價格文字
+                    let originalText = String(format: "¥%.0f", detectedValueDouble)
+                    
+                    // 動態計算文字寬度
+                    let estimatedWidth = max(CGFloat(convertedText.count * 10 + 20), 100)
+                    let textSize = CGSize(width: estimatedWidth, height: 28)
+                    
+                    // 緊貼在框的正上方，距離只有 4 點
                     let textX = x + width / 2 - textSize.width / 2
-                    let textY = y - textSize.height - 8  // 在框的上方留一點間距
+                    let textY = y - textSize.height - 4
                     
                     let backgroundRect = CGRect(
                         x: textX,
@@ -77,27 +92,34 @@ struct DetectionOverlayView: View {
                     
                     // 繪製背景（半透明黑色）
                     context.fill(
-                        Path(roundedRect: backgroundRect, cornerRadius: 8),
-                        with: .color(.black.opacity(0.8))
+                        Path(roundedRect: backgroundRect, cornerRadius: 6),
+                        with: .color(.black.opacity(0.85))
                     )
                     
                     // 繪製轉換金額（綠色大字）
                     context.draw(
                         Text(convertedText)
-                            .font(.system(size: 16, weight: .bold))
+                            .font(.system(size: 15, weight: .bold))
                             .foregroundColor(.green),
                         at: CGPoint(x: textX + textSize.width / 2, y: textY + textSize.height / 2),
                         anchor: .center
                     )
                     
-                    // 在框的左上角顯示原始偵測值（小字）
-                    let originalText = String(format: "¥%.0f", detectedValue as CVarArg)
+                    // 在框內部左上角顯示原始偵測值（加上背景讓它更清楚）
+                    let originalBgSize = CGSize(width: CGFloat(originalText.count * 7 + 8), height: 18)
+                    let originalBgRect = CGRect(x: x + 4, y: y + 4, width: originalBgSize.width, height: originalBgSize.height)
+                    
+                    context.fill(
+                        Path(roundedRect: originalBgRect, cornerRadius: 4),
+                        with: .color(.black.opacity(0.7))
+                    )
+                    
                     context.draw(
                         Text(originalText)
-                            .font(.caption2)
-                            .foregroundColor(.white),
-                        at: CGPoint(x: x + 5, y: y + 5),
-                        anchor: .topLeading
+                            .font(.system(size: 12, weight: .semibold))
+                            .foregroundColor(.yellow),
+                        at: CGPoint(x: x + 4 + originalBgSize.width / 2, y: y + 4 + originalBgSize.height / 2),
+                        anchor: .center
                     )
                 }
 
