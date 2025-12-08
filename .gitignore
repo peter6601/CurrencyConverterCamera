@@ -184,17 +184,3 @@ Temporary Items
 .apdisk
 
 # Specs and Documentation Files - Project Planning
-specs/
-specsREADME.md
-specsORGANIZATION_REPORT.md
-product_spec.md
-data-model.md
-plan.md
-tasks.md
-requirements.md
-quickstart.md
-PHASE_*.md
-*.md
-
-# Keep only essential documentation
-!README.md
