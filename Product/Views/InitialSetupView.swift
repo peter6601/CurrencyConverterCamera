@@ -18,8 +18,9 @@ struct InitialSetupView: View {
     @State private var validationError: String?
     @State private var isSaving = false
 
-    // Callback to navigate to camera
+    // Callbacks for navigation
     var onContinueToCamera: () -> Void
+    var onContinueToPhoto: (() -> Void)?  // Optional callback for photo picker
 
     // Computed Properties for Validation
     var isValid: Bool {
@@ -75,27 +76,17 @@ struct InitialSetupView: View {
                         // MARK: - Rate Input Section
                         // 匯率 (1 外幣 = ? 本幣)
                         VStack(alignment: .leading, spacing: 8) {
-                            let foreignCurrencyDisplay =
-                                foreignCurrency.isEmpty
-                                ? String(localized: "foreign")
+                            let foreignCurrencyDisplay = foreignCurrency.isEmpty 
+                                ? String(localized: "foreign") 
                                 : foreignCurrency
-                            let localCurrencyDisplay =
-                                localCurrency.isEmpty
-                                ? String(localized: "local")
+                            let localCurrencyDisplay = localCurrency.isEmpty 
+                                ? String(localized: "local") 
                                 : localCurrency
-
-                            Text(
-                                String(
-                                    format: NSLocalizedString(
-                                        "exchange_rate_label",
-                                        comment: "Exchange Rate (1 %@ = ? %@)"),
-                                    foreignCurrencyDisplay,
-                                    localCurrencyDisplay
-                                )
-                            )
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                            .fontWeight(.bold)
+                            
+                            Text("匯率 (1 \(foreignCurrencyDisplay) = ? \(localCurrencyDisplay))")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                                .fontWeight(.bold)
 
                             HStack(spacing: 12) {
                                 Image(systemName: "multiply")
@@ -217,6 +208,33 @@ struct InitialSetupView: View {
                                 .stroke(Color.gray.opacity(0.2), lineWidth: 1)
                         )
 
+                        // MARK: - Save Settings Button
+                        Button(action: saveSettings) {
+                            HStack(spacing: 8) {
+                                if isSaving {
+                                    ProgressView()
+                                        .tint(.blue)
+                                } else {
+                                    Image(systemName: "square.and.arrow.down")
+                                        .font(.system(size: 18, weight: .semibold))
+                                }
+                                
+                                Text(isSaving ? "saving" : "儲存目前設定")
+                                    .font(.system(size: 18, weight: .semibold))
+                            }
+                            .foregroundColor(.blue)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 16)
+                            .background(Color.white)
+                            .cornerRadius(16)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .stroke(Color.blue.opacity(isValid ? 1.0 : 0.3), lineWidth: 2)
+                            )
+                        }
+                        .disabled(!isValid || isSaving)
+                        .padding(.top, 16)
+
                     }
                     .padding(24)
                     .background(Color.white)
@@ -228,31 +246,51 @@ struct InitialSetupView: View {
 
                 Spacer()
 
-                // MARK: - Bottom Button
-                Button(action: saveSettings) {
-                    HStack {
-                        if isSaving {
-                            ProgressView()
-                                .tint(.white)
-                                .padding(.trailing, 8)
-                        } else {
-                            Image(systemName: "camera")
-                                .font(.headline)
+                // MARK: - Bottom Action Buttons
+                HStack(spacing: 16) {
+                    // Camera Button (Left - Dark)
+                    Button(action: {
+                        if isValid {
+                            saveSettingsAndContinue(action: onContinueToCamera)
                         }
-
-                        Text(isSaving ? "saving" : "save_and_open_camera")
-                            .font(.headline)
-                            .fontWeight(.bold)
+                    }) {
+                        Text("開啟相機")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 18)
+                            .background(
+                                isValid 
+                                    ? Color(red: 0.15, green: 0.15, blue: 0.2)
+                                    : Color(red: 0.15, green: 0.15, blue: 0.2).opacity(0.5)
+                            )
+                            .cornerRadius(16)
                     }
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 16)
-                    .background(isValid ? Color.blue : Color.blue.opacity(0.5))
-                    .foregroundColor(.white)
-                    .cornerRadius(16)
+                    .disabled(!isValid)
+                    
+                    // Photo Button (Right - Blue)
+                    Button(action: {
+                        if isValid {
+                            if let photoAction = onContinueToPhoto {
+                                saveSettingsAndContinue(action: photoAction)
+                            } else {
+                                // Fallback: just save settings
+                                saveSettings()
+                            }
+                        }
+                    }) {
+                        Text("開啟相片")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 18)
+                            .background(isValid ? Color.blue : Color.blue.opacity(0.5))
+                            .cornerRadius(16)
+                    }
+                    .disabled(!isValid)
                 }
                 .padding(.horizontal, 24)
                 .padding(.bottom, 34)  // Bottom safe area
-                .disabled(!isValid || isSaving)
             }
         }
         .onAppear {
@@ -300,11 +338,41 @@ struct InitialSetupView: View {
             // Save via AppState
             self.appState.saveCurrencySettings(settings)
 
-            if self.appState.errorMessage == nil {
-                // Success - navigate to camera
-                self.onContinueToCamera()
-            } else {
+            if self.appState.errorMessage != nil {
                 // Error handling handled by AppState state, but we could show alert
+                self.validationError = self.appState.errorMessage
+            }
+
+            self.isSaving = false
+        }
+    }
+    
+    private func saveSettingsAndContinue(action: @escaping () -> Void) {
+        guard isValid else { return }
+
+        isSaving = true
+
+        // Simulating save delay slightly for UX
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            guard let rate = Decimal(string: self.exchangeRateText) else {
+                self.isSaving = false
+                return
+            }
+
+            let settings = CurrencySettings(
+                foreignCurrency: self.foreignCurrency,
+                localCurrency: self.localCurrency,
+                exchangeRate: rate
+            )
+
+            // Save via AppState
+            self.appState.saveCurrencySettings(settings)
+
+            if self.appState.errorMessage == nil {
+                // Success - execute the action (navigate to camera or photo)
+                action()
+            } else {
+                // Error handling
                 self.validationError = self.appState.errorMessage
             }
 
@@ -337,6 +405,9 @@ extension View {
 // MARK: - Preview
 
 #Preview {
-    InitialSetupView(onContinueToCamera: {})
-        .environment(\.appState, AppState())
+    InitialSetupView(
+        onContinueToCamera: {},
+        onContinueToPhoto: {}
+    )
+    .environment(\.appState, AppState())
 }
