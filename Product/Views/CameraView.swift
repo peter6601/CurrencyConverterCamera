@@ -5,8 +5,8 @@
 //  Created by Claude on 2025-12-03.
 //
 
-import SwiftUI
 import AVFoundation
+import SwiftUI
 
 struct CameraView: View {
     @StateObject private var viewModel = CameraViewModel()
@@ -36,7 +36,7 @@ struct CameraView: View {
         .onAppear {
             // Request camera permission first
             viewModel.requestCameraPermission()
-            
+
             // Start camera if authorized
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 if !viewModel.cameraPermissionDenied {
@@ -60,16 +60,16 @@ struct CameraView: View {
                 .font(.system(size: 60))
                 .foregroundColor(.gray)
 
-            Text("Camera Access Denied")
+            Text("無法存取相機")
                 .font(.headline)
 
-            Text("Please enable camera access in Settings to use this feature")
+            Text("請在設定中啟用相機權限以使用此功能")
                 .font(.body)
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
 
             Button(action: openSettings) {
-                Text("Open Settings")
+                Text("開啟設定")
                     .font(.headline)
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
@@ -96,9 +96,9 @@ struct CameraView: View {
                     .fill(Color.black)
                     .overlay(
                         VStack {
-                            Text("📷 Camera Preview")
+                            Text("📷 相機預覽")
                                 .foregroundColor(.gray)
-                            Text("Starting camera...")
+                            Text("啟動相機中...")
                                 .font(.caption)
                                 .foregroundColor(.gray)
                         }
@@ -109,14 +109,14 @@ struct CameraView: View {
             VStack {
                 HStack {
                     Spacer()
-                    
+
                     VStack(alignment: .trailing, spacing: 4) {
                         HStack(spacing: 8) {
-                            Text("Detect")
+                            Text("偵測")
                                 .foregroundColor(.white)
                                 .font(.subheadline)
                                 .fontWeight(.medium)
-                            
+
                             Toggle("", isOn: $isConversionEnabled)
                                 .labelsHidden()
                                 .tint(.green)
@@ -125,26 +125,26 @@ struct CameraView: View {
                         .padding(.vertical, 8)
                         .background(Color.black.opacity(0.7))
                         .cornerRadius(20)
-                        
+
                         // 小狀態指示器
                         if isConversionEnabled {
-                            Text("ON")
+                            Text("開啟")
                                 .font(.caption2)
                                 .fontWeight(.bold)
                                 .foregroundColor(.green)
                                 .padding(.trailing, 12)
                         } else {
-                            Text("OFF")
+                            Text("關閉")
                                 .font(.caption2)
                                 .fontWeight(.bold)
                                 .foregroundColor(.gray)
                                 .padding(.trailing, 12)
                         }
                     }
-                    .padding(.top, 60) // 避開返回按鈕
+                    .padding(.top, 60)  // 避開返回按鈕
                     .padding(.trailing, 16)
                 }
-                
+
                 Spacer()
             }
 
@@ -152,7 +152,7 @@ struct CameraView: View {
             if isConversionEnabled {
                 if let frame = viewModel.currentFrame {
                     DetectionOverlayView(
-                        frame: frame, 
+                        frame: frame,
                         detectedNumbers: viewModel.detectedNumbers,
                         conversionResult: viewModel.latestResult,
                         currencySettings: appState.currencySettings
@@ -164,11 +164,11 @@ struct CameraView: View {
             if isConversionEnabled && viewModel.isProcessing {
                 VStack {
                     Spacer()
-                    
+
                     HStack {
                         ProgressView()
                             .tint(.white)
-                        Text("Detecting...")
+                        Text("偵測中...")
                             .font(.caption)
                             .foregroundColor(.white)
                     }
@@ -193,12 +193,12 @@ struct CameraView: View {
                     Image(systemName: "pause.circle.fill")
                         .font(.system(size: 40))
                         .foregroundColor(.gray)
-                    
-                    Text("Price Detection is Off")
+
+                    Text("價格偵測已關閉")
                         .font(.headline)
                         .foregroundColor(.white)
-                    
-                    Text("Enable the switch above to start detecting prices")
+
+                    Text("開啟上方開關以開始偵測價格")
                         .font(.caption)
                         .foregroundColor(.gray)
                         .multilineTextAlignment(.center)
@@ -208,13 +208,13 @@ struct CameraView: View {
                 .background(Color.gray.opacity(0.1))
             } else if let result = viewModel.latestResult {
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("Detection Result")
+                    Text("偵測結果")
                         .font(.headline)
                         .foregroundColor(.white)
 
                     HStack {
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("Detected")
+                            Text("偵測金額")
                                 .font(.caption)
                                 .foregroundColor(.gray)
                             Text(result.formattedDetectedPrice)
@@ -225,7 +225,7 @@ struct CameraView: View {
                         Spacer()
 
                         VStack(alignment: .trailing, spacing: 4) {
-                            Text("Converted")
+                            Text("換算金額")
                                 .font(.caption)
                                 .foregroundColor(.gray)
                             Text(result.formattedConvertedAmount)
@@ -247,7 +247,7 @@ struct CameraView: View {
                     }
 
                     Button(action: viewModel.saveCurrentResult) {
-                        Text("Save Result")
+                        Text("儲存結果")
                             .font(.headline)
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
@@ -272,7 +272,7 @@ struct CameraView: View {
                 .background(Color.red.opacity(0.1))
             } else {
                 VStack(spacing: 8) {
-                    Text("Point camera at price tags or receipts")
+                    Text("將相機對準價格標籤或收據")
                         .font(.caption)
                         .foregroundColor(.gray)
                         .multilineTextAlignment(.center)
