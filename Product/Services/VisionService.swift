@@ -5,9 +5,9 @@
 //  Created by Claude on 2025-12-03.
 //
 
+import CoreGraphics
 import Foundation
 import Vision
-import CoreGraphics
 
 /// Service for Vision framework integration (OCR and detection)
 class VisionService {
@@ -18,7 +18,8 @@ class VisionService {
     // MARK: - Initialization
 
     init() {
-        textRecognitionRequest.recognitionLanguages = ["en"]
+        textRecognitionRequest.recognitionLanguages = ["en", "ja"]
+        textRecognitionRequest.recognitionLevel = .accurate
         textRecognitionRequest.usesLanguageCorrection = true
         AppLogger.debug("VisionService initialized", category: AppLogger.general)
     }
@@ -32,7 +33,8 @@ class VisionService {
 
             let request = VNRecognizeTextRequest { [weak self] request, error in
                 if let error = error {
-                    AppLogger.error("Text recognition failed", error: error, category: AppLogger.general)
+                    AppLogger.error(
+                        "Text recognition failed", error: error, category: AppLogger.general)
                     continuation.resume(throwing: error)
                     return
                 }
@@ -50,7 +52,9 @@ class VisionService {
                     let recognizedText = topCandidate.string
                     let confidence = self?.calculateConfidence(for: observation) ?? 0.0
 
-                    AppLogger.debug("Recognized text: \(recognizedText), confidence: \(confidence)", category: AppLogger.general)
+                    AppLogger.debug(
+                        "Recognized text: \(recognizedText), confidence: \(confidence)",
+                        category: AppLogger.general)
 
                     // Extract numbers from recognized text
                     let numbers = self?.extractNumbers(from: recognizedText) ?? []
@@ -76,7 +80,8 @@ class VisionService {
             do {
                 try handler.perform([request])
             } catch {
-                AppLogger.error("Failed to perform text recognition", error: error, category: AppLogger.general)
+                AppLogger.error(
+                    "Failed to perform text recognition", error: error, category: AppLogger.general)
                 continuation.resume(throwing: error)
             }
         }
@@ -102,7 +107,8 @@ class VisionService {
                 numbers.append(matchString)
             }
 
-            AppLogger.debug("Extracted \(numbers.count) numbers from text", category: AppLogger.general)
+            AppLogger.debug(
+                "Extracted \(numbers.count) numbers from text", category: AppLogger.general)
         } catch {
             AppLogger.error("Failed to extract numbers", error: error, category: AppLogger.general)
         }
@@ -129,7 +135,9 @@ class VisionService {
     }
 
     /// Deduplicates nearby detections
-    func deduplicateDetections(_ detections: [DetectedNumber], distance: CGFloat = 0.05) -> [DetectedNumber] {
+    func deduplicateDetections(_ detections: [DetectedNumber], distance: CGFloat = 0.05)
+        -> [DetectedNumber]
+    {
         // If DetectedNumber doesn't expose positional info, return as-is
         // We attempt to access `sourceRegion` via Mirror; if not found, skip deduplication
         guard let first = detections.first else { return [] }
@@ -144,8 +152,10 @@ class VisionService {
                 let dMirror = Mirror(reflecting: detection)
                 let eMirror = Mirror(reflecting: existing)
                 guard
-                    let dBox = dMirror.children.first(where: { $0.label == "sourceRegion" })?.value as? CGRect,
-                    let eBox = eMirror.children.first(where: { $0.label == "sourceRegion" })?.value as? CGRect
+                    let dBox = dMirror.children.first(where: { $0.label == "sourceRegion" })?.value
+                        as? CGRect,
+                    let eBox = eMirror.children.first(where: { $0.label == "sourceRegion" })?.value
+                        as? CGRect
                 else { return false }
                 let dx = dBox.midX - eBox.midX
                 let dy = dBox.midY - eBox.midY
@@ -156,7 +166,9 @@ class VisionService {
                 unique.append(detection)
             }
         }
-        AppLogger.debug("Deduplication: \(detections.count) -> \(unique.count) detections", category: AppLogger.general)
+        AppLogger.debug(
+            "Deduplication: \(detections.count) -> \(unique.count) detections",
+            category: AppLogger.general)
         return unique
     }
 }
