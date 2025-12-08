@@ -46,6 +46,7 @@
 		2DA87E2D2EE2BAC300C32679 /* FINAL_TEST_FIX_REPORT.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E2C2EE2BAC300C32679 /* FINAL_TEST_FIX_REPORT.md */; };
 		2DA87E2F2EE2BAD400C32679 /* VERIFY_NOW.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E2E2EE2BAD400C32679 /* VERIFY_NOW.md */; };
 		2DA87E312EE2D88900C32679 /* WARNING_FIXES_SUMMARY.md in Resources */ = {isa = PBXBuildFile; fileRef = 2DA87E302EE2D88900C32679 /* WARNING_FIXES_SUMMARY.md */; };
+		2DF736CE2EE6D76E000CCE2E /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2DF736CD2EE6D76E000CCE2E /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,7 @@
 		2DA87E2C2EE2BAC300C32679 /* FINAL_TEST_FIX_REPORT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = FINAL_TEST_FIX_REPORT.md; sourceTree = "<group>"; };
 		2DA87E2E2EE2BAD400C32679 /* VERIFY_NOW.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = VERIFY_NOW.md; sourceTree = "<group>"; };
 		2DA87E302EE2D88900C32679 /* WARNING_FIXES_SUMMARY.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = WARNING_FIXES_SUMMARY.md; sourceTree = "<group>"; };
+		2DF736CD2EE6D76E000CCE2E /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 		2DA87CA82EE0012200C32679 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				2DF736CD2EE6D76E000CCE2E /* Localizable.xcstrings */,
 				2DA87CA52EE0012200C32679 /* Constants.swift */,
 				2DA87CA62EE0012200C32679 /* Extensions.swift */,
 				2DA87CA72EE0012200C32679 /* Logger.swift */,
@@ -343,6 +346,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hant",
 			);
 			mainGroup = 2DE15DD22EDF344A006EDD45;
 			minimizedProjectReferenceProxies = 1;
@@ -365,6 +369,7 @@
 			files = (
 				2DA87E312EE2D88900C32679 /* WARNING_FIXES_SUMMARY.md in Resources */,
 				2DA87CCB2EE0012200C32679 /* Assets.xcassets in Resources */,
+				2DF736CE2EE6D76E000CCE2E /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,6 +524,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -576,6 +582,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -591,12 +598,14 @@
 				DEVELOPMENT_TEAM = QD39SW5YJ4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_NSCameraUsageDescription = "需要相機權限才能顯示";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -626,12 +635,14 @@
 				DEVELOPMENT_TEAM = QD39SW5YJ4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_NSCameraUsageDescription = "需要相機權限才能顯示";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

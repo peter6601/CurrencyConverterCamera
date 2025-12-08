@@ -41,27 +41,41 @@ class SettingsViewModel: ObservableObject {
         var message: String {
             switch self {
             case .emptyForeignCurrency:
-                return "Foreign currency code cannot be empty"
+                return NSLocalizedString(
+                    "error_empty_foreign", comment: "Foreign currency code cannot be empty")
             case .foreignCurrencyTooLong:
-                return "Foreign currency code must be 20 characters or less"
+                return NSLocalizedString(
+                    "error_long_foreign",
+                    comment: "Foreign currency code must be 20 characters or less")
             case .invalidForeignCurrencyFormat:
-                return "Foreign currency must be letters only (e.g., JPY)"
+                return NSLocalizedString(
+                    "error_invalid_foreign", comment: "Foreign currency must be letters only")
             case .emptyLocalCurrency:
-                return "Local currency code cannot be empty"
+                return NSLocalizedString(
+                    "error_empty_local", comment: "Local currency code cannot be empty")
             case .localCurrencyTooLong:
-                return "Local currency code must be 20 characters or less"
+                return NSLocalizedString(
+                    "error_long_local", comment: "Local currency code must be 20 characters or less"
+                )
             case .invalidLocalCurrencyFormat:
-                return "Local currency must be letters only (e.g., NTD)"
+                return NSLocalizedString(
+                    "error_invalid_local", comment: "Local currency must be letters only")
             case .invalidExchangeRate:
-                return "Invalid exchange rate format"
+                return NSLocalizedString(
+                    "error_invalid_rate", comment: "Invalid exchange rate format")
             case .exchangeRateTooSmall:
-                return "Exchange rate must be at least 0.0001"
+                return NSLocalizedString(
+                    "error_rate_too_small", comment: "Exchange rate must be at least 0.0001")
             case .exchangeRateTooLarge:
-                return "Exchange rate cannot exceed 10000"
+                return NSLocalizedString(
+                    "error_rate_too_large", comment: "Exchange rate cannot exceed 10000")
             case .exchangeRateNotPositive:
-                return "Exchange rate must be greater than 0"
+                return NSLocalizedString(
+                    "error_rate_not_positive", comment: "Exchange rate must be greater than 0")
             case .storageError(let message):
-                return "Storage error: \(message)"
+                return String(
+                    format: NSLocalizedString("error_storage", comment: "Storage error: %@"),
+                    message)
             }
         }
     }
@@ -219,7 +233,8 @@ class SettingsViewModel: ObservableObject {
             self.validationError = .storageError(error)
         } else {
             self.validationError = nil
-            self.successMessage = "Settings saved successfully"
+            self.successMessage = NSLocalizedString(
+                "success_saved", comment: "Settings saved successfully")
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 self.successMessage = nil
             }
@@ -265,14 +280,14 @@ class SettingsViewModel: ObservableObject {
     }
 
     var foreignCurrencyHelperText: String {
-        "3-letter code (e.g., JPY)"
+        NSLocalizedString("helper_foreign", comment: "3-letter code (e.g., JPY)")
     }
 
     var localCurrencyHelperText: String {
-        "3-letter code (e.g., NTD)"
+        NSLocalizedString("helper_local", comment: "3-letter code (e.g., NTD)")
     }
 
     var exchangeRateHelperText: String {
-        "Rate must be between 0.0001 and 10000"
+        NSLocalizedString("helper_rate", comment: "Rate must be between 0.0001 and 10000")
     }
 }

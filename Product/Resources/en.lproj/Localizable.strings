@@ -1,0 +1,65 @@
+/* InitialSetupView */
+"setup_title" = "Currency Setup";
+"setup_subtitle" = "Configure your conversion basis";
+"exchange_rate_label" = "Exchange Rate (1 %@ = ? %@)";
+"foreign" = "Foreign";
+"local" = "Local";
+"local_currency_label" = "Local Currency (Display)";
+"foreign_currency_label" = "Foreign Currency Code";
+"calculation_preview" = "Calculation Preview";
+"saving" = "Saving...";
+"save_and_open_camera" = "Save and Open Camera";
+
+/* SettingsView */
+"settings_title" = "Settings";
+"settings_subtitle" = "Configure currency and exchange rate";
+"current_settings" = "Current Settings";
+"variables" = "Variables";
+"last_updated" = "Last Updated";
+"update_settings" = "Update Settings";
+"validation_error" = "Validation Error";
+"save_settings" = "Save Settings";
+"reset" = "Reset";
+"foreign_prefix" = "Foreign ";
+"local_prefix" = "Local ";
+
+/* SettingsViewModel (Validation Messages) */
+"error_empty_foreign" = "Foreign currency code cannot be empty";
+"error_long_foreign" = "Foreign currency code must be 20 characters or less";
+"error_invalid_foreign" = "Foreign currency must be letters only (e.g., JPY)";
+"error_empty_local" = "Local currency code cannot be empty";
+"error_long_local" = "Local currency code must be 20 characters or less";
+"error_invalid_local" = "Local currency must be letters only (e.g., NTD)";
+"error_invalid_rate" = "Invalid exchange rate format";
+"error_rate_too_small" = "Exchange rate must be at least 0.0001";
+"error_rate_too_large" = "Exchange rate cannot exceed 10000";
+"error_rate_not_positive" = "Exchange rate must be greater than 0";
+"error_storage" = "Storage error: %@";
+"success_saved" = "Settings saved successfully";
+"helper_foreign" = "3-letter code (e.g., JPY)";
+"helper_local" = "3-letter code (e.g., NTD)";
+"helper_rate" = "Rate must be between 0.0001 and 10000";
+
+/* CameraView */
+"camera_access_denied" = "Camera Access Denied";
+"camera_access_msg" = "Please enable camera access in Settings to use this feature";
+"open_settings" = "Open Settings";
+"camera_preview" = "📷 Camera Preview";
+"starting_camera" = "Starting camera...";
+"detect" = "Detect";
+"on" = "ON";
+"off" = "OFF";
+"detecting" = "Detecting...";
+"detection_off" = "Price Detection is Off";
+"enable_detection_msg" = "Enable the switch above to start detecting prices";
+"detection_result" = "Detection Result";
+"detected_amount" = "Detected";
+"converted_amount" = "Converted";
+"save_result" = "Save Result";
+"camera_instruction" = "Point camera at price tags or receipts";
+
+/* CameraViewModel (Errors) */
+"error_detection_failed" = "Detection failed: %@";
+"error_conversion_failed" = "Conversion failed: %@";
+"error_save_failed" = "Failed to save: %@";
+"error_camera_general" = "Camera error: %@";

@@ -28,18 +28,18 @@ struct ContentView: View {
             }
         }
     }
-    
+
     private var cameraViewWithBackButton: some View {
         ZStack(alignment: .topLeading) {
             CameraView()
-            
+
             // Back to Settings button
             Button(action: {
                 selectedView = .settings
             }) {
                 HStack {
                     Image(systemName: "chevron.left")
-                    Text("Settings")
+                    Text("settings_title")
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)

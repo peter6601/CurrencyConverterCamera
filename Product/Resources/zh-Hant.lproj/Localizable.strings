@@ -1,0 +1,65 @@
+/* InitialSetupView */
+"setup_title" = "匯率設定";
+"setup_subtitle" = "設定您的換算基準";
+"exchange_rate_label" = "匯率 (1 %@ = ? %@)";
+"foreign" = "外幣";
+"local" = "本幣";
+"local_currency_label" = "本幣 (顯示)";
+"foreign_currency_label" = "外幣代號";
+"calculation_preview" = "試算預覽";
+"saving" = "儲存中...";
+"save_and_open_camera" = "儲存並開啟相機";
+
+/* SettingsView */
+"settings_title" = "設定";
+"settings_subtitle" = "設定貨幣與匯率";
+"current_settings" = "目前設定";
+"variables" = "參數";
+"last_updated" = "最後更新";
+"update_settings" = "更新設定";
+"validation_error" = "驗證錯誤";
+"save_settings" = "儲存設定";
+"reset" = "重置";
+"foreign_prefix" = "外幣 ";
+"local_prefix" = "本幣 ";
+
+/* SettingsViewModel (Validation Messages) */
+"error_empty_foreign" = "外幣代號不能為空";
+"error_long_foreign" = "外幣代號必須在20字元以內";
+"error_invalid_foreign" = "外幣代號僅限字母（如 JPY）";
+"error_empty_local" = "本幣代號不能為空";
+"error_long_local" = "本幣代號必須在20字元以內";
+"error_invalid_local" = "本幣代號僅限字母（如 NTD）";
+"error_invalid_rate" = "匯率格式無效";
+"error_rate_too_small" = "匯率必須大於 0.0001";
+"error_rate_too_large" = "匯率不能超過 10000";
+"error_rate_not_positive" = "匯率必須大於 0";
+"error_storage" = "儲存錯誤: %@";
+"success_saved" = "設定儲存成功";
+"helper_foreign" = "3位字母代碼（例如 JPY）";
+"helper_local" = "3位字母代碼（例如 NTD）";
+"helper_rate" = "匯率必須介於 0.0001 與 10000 之間";
+
+/* CameraView */
+"camera_access_denied" = "無法存取相機";
+"camera_access_msg" = "請在設定中啟用相機權限以使用此功能";
+"open_settings" = "開啟設定";
+"camera_preview" = "📷 相機預覽";
+"starting_camera" = "啟動相機中...";
+"detect" = "偵測";
+"on" = "開啟";
+"off" = "關閉";
+"detecting" = "偵測中...";
+"detection_off" = "價格偵測已關閉";
+"enable_detection_msg" = "開啟上方開關以開始偵測價格";
+"detection_result" = "偵測結果";
+"detected_amount" = "偵測金額";
+"converted_amount" = "換算金額";
+"save_result" = "儲存結果";
+"camera_instruction" = "將相機對準價格標籤或收據";
+
+/* CameraViewModel (Errors) */
+"error_detection_failed" = "偵測失敗: %@";
+"error_conversion_failed" = "換算失敗: %@";
+"error_save_failed" = "儲存失敗: %@";
+"error_camera_general" = "相機錯誤: %@";

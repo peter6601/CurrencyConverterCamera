@@ -23,11 +23,11 @@ struct SettingsView: View {
                             .foregroundStyle(.green)
 
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("Settings")
+                            Text("settings_title")
                                 .font(.title2)
                                 .fontWeight(.bold)
 
-                            Text("Configure currency and exchange rate")
+                            Text("settings_subtitle")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                         }
@@ -44,13 +44,13 @@ struct SettingsView: View {
                         // MARK: - Current Settings Display
                         if let settings = appState.currencySettings {
                             VStack(alignment: .leading, spacing: 12) {
-                                Text("Current Settings")
+                                Text("current_settings")
                                     .font(.headline)
                                     .padding(.horizontal)
 
                                 VStack(spacing: 12) {
                                     HStack {
-                                        Text("Variables")
+                                        Text("variables")
                                             .foregroundStyle(.secondary)
                                         Spacer()
                                         Text(
@@ -63,7 +63,7 @@ struct SettingsView: View {
                                     Divider()
 
                                     HStack {
-                                        Text("Last Updated")
+                                        Text("last_updated")
                                             .foregroundStyle(.secondary)
                                         Spacer()
                                         Text(settings.lastUpdated.relativeTimeString)
@@ -81,7 +81,7 @@ struct SettingsView: View {
 
                         // MARK: - Input Form
                         VStack(spacing: 16) {
-                            Text("Update Settings")
+                            Text("update_settings")
                                 .font(.headline)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.horizontal)
@@ -92,7 +92,8 @@ struct SettingsView: View {
                                 isInvalid: isErrorForField(.foreign),
                                 errorMessage: isErrorForField(.foreign)
                                     ? viewModel.validationError?.message : nil,
-                                helperText: "Foreign " + viewModel.foreignCurrencyHelperText
+                                helperText: String(localized: "foreign_prefix")
+                                    + viewModel.foreignCurrencyHelperText
                             )
                             .padding(.horizontal)
 
@@ -102,7 +103,8 @@ struct SettingsView: View {
                                 isInvalid: isErrorForField(.local),
                                 errorMessage: isErrorForField(.local)
                                     ? viewModel.validationError?.message : nil,
-                                helperText: "Local " + viewModel.localCurrencyHelperText
+                                helperText: String(localized: "local_prefix")
+                                    + viewModel.localCurrencyHelperText
                             )
                             .padding(.horizontal)
 
@@ -142,7 +144,7 @@ struct SettingsView: View {
                                     .foregroundStyle(.orange)
 
                                 VStack(alignment: .leading, spacing: 4) {
-                                    Text("Validation Error")
+                                    Text("validation_error")
                                         .font(.callout)
                                         .fontWeight(.semibold)
 
@@ -175,12 +177,12 @@ struct SettingsView: View {
                                 ProgressView()
                                     .tint(.white)
 
-                                Text("Saving...")
+                                Text("saving")
                             }
                         } else {
                             HStack(spacing: 8) {
                                 Image(systemName: "checkmark.circle")
-                                Text("Save Settings")
+                                Text("save_settings")
                             }
                         }
                     }
@@ -197,7 +199,7 @@ struct SettingsView: View {
                     }) {
                         HStack(spacing: 8) {
                             Image(systemName: "arrow.counterclockwise")
-                            Text("Reset")
+                            Text("reset")
                         }
                     }
                     .frame(maxWidth: .infinity)
@@ -210,7 +212,7 @@ struct SettingsView: View {
                 .padding()
                 .background(Color(.systemGray6))
             }
-            .navigationTitle("Settings")
+            .navigationTitle(String(localized: "settings_title"))
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 viewModel.loadSettings(from: appState.currencySettings)

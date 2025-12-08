@@ -52,12 +52,12 @@ struct InitialSetupView: View {
                         // Optional dots menu if needed, ignoring for now based on screenshot
                     }
 
-                    Text("匯率設定")
+                    Text("setup_title")
                         .font(.system(size: 34, weight: .bold))
                         .foregroundColor(.white)
                         .padding(.top, 40)
 
-                    Text("設定您的換算基準")
+                    Text("setup_subtitle")
                         .font(.body)
                         .foregroundColor(.white.opacity(0.9))
                         .padding(.bottom, 20)
@@ -75,8 +75,23 @@ struct InitialSetupView: View {
                         // MARK: - Rate Input Section
                         // 匯率 (1 外幣 = ? 本幣)
                         VStack(alignment: .leading, spacing: 8) {
+                            let foreignCurrencyDisplay =
+                                foreignCurrency.isEmpty
+                                ? String(localized: "foreign")
+                                : foreignCurrency
+                            let localCurrencyDisplay =
+                                localCurrency.isEmpty
+                                ? String(localized: "local")
+                                : localCurrency
+
                             Text(
-                                "匯率 (1 \(foreignCurrency.isEmpty ? "外幣" : foreignCurrency) = ? \(localCurrency.isEmpty ? "本幣" : localCurrency))"
+                                String(
+                                    format: NSLocalizedString(
+                                        "exchange_rate_label",
+                                        comment: "Exchange Rate (1 %@ = ? %@)"),
+                                    foreignCurrencyDisplay,
+                                    localCurrencyDisplay
+                                )
                             )
                             .font(.subheadline)
                             .foregroundColor(.gray)
@@ -99,7 +114,7 @@ struct InitialSetupView: View {
                         // MARK: - Local Currency Section
                         // 本幣 (顯示)
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("本幣 (顯示)")
+                            Text("local_currency_label")
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                                 .fontWeight(.bold)
@@ -131,7 +146,7 @@ struct InitialSetupView: View {
                         // I will add a third field similar to Local Currency.
 
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("外幣代號")
+                            Text("foreign_currency_label")
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                                 .fontWeight(.bold)
@@ -160,7 +175,7 @@ struct InitialSetupView: View {
                         // MARK: - Prevention Preview Card
                         // 試算預覽
                         VStack(spacing: 16) {
-                            Text("試算預覽")
+                            Text("calculation_preview")
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                                 .fontWeight(.bold)
@@ -225,7 +240,7 @@ struct InitialSetupView: View {
                                 .font(.headline)
                         }
 
-                        Text(isSaving ? "儲存中..." : "儲存並開啟相機")
+                        Text(isSaving ? "saving" : "save_and_open_camera")
                             .font(.headline)
                             .fontWeight(.bold)
                     }

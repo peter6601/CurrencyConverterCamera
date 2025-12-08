@@ -133,7 +133,7 @@ class CameraViewModel: NSObject, ObservableObject {
             do {
                 // Recognize text from frame
                 let detectedNumbers = try await visionService.recognizeText(from: pixelBuffer)
-                
+
                 AppLogger.debug(
                     "Initial detections: \(detectedNumbers.count)",
                     category: AppLogger.general
@@ -145,13 +145,13 @@ class CameraViewModel: NSObject, ObservableObject {
                     "After deduplication: \(filtered.count)",
                     category: AppLogger.general
                 )
-                
+
                 let highConfidence = visionService.filterByConfidence(filtered, threshold: 0.9)
                 AppLogger.debug(
                     "After confidence filter (>0.9): \(highConfidence.count)",
                     category: AppLogger.general
                 )
-                
+
                 // Filter by size: only keep detections where height > 1/10 of screen height
                 let sizeFiltered: [DetectedNumber]
                 if self.isSizeFilterEnabled {
@@ -192,7 +192,10 @@ class CameraViewModel: NSObject, ObservableObject {
                 AppLogger.error(
                     "Frame processing failed", error: error, category: AppLogger.general)
                 DispatchQueue.main.async {
-                    self.conversionError = "Detection failed: \(error.localizedDescription)"
+                    self.conversionError = String(
+                        format: NSLocalizedString(
+                            "error_detection_failed", comment: "Detection failed: %@"),
+                        error.localizedDescription)
                     self.isProcessing = false
                 }
             }
@@ -239,7 +242,10 @@ class CameraViewModel: NSObject, ObservableObject {
         } catch {
             AppLogger.error("Conversion failed", error: error, category: AppLogger.general)
             DispatchQueue.main.async {
-                self.conversionError = "Conversion failed: \(error.localizedDescription)"
+                self.conversionError = String(
+                    format: NSLocalizedString(
+                        "error_conversion_failed", comment: "Conversion failed: %@"),
+                    error.localizedDescription)
             }
         }
     }
@@ -272,7 +278,9 @@ class CameraViewModel: NSObject, ObservableObject {
         } catch {
             AppLogger.error("Failed to save result", error: error, category: AppLogger.general)
             DispatchQueue.main.async {
-                self.conversionError = "Failed to save: \(error.localizedDescription)"
+                self.conversionError = String(
+                    format: NSLocalizedString("error_save_failed", comment: "Failed to save: %@"),
+                    error.localizedDescription)
             }
         }
     }
@@ -309,7 +317,9 @@ extension CameraViewModel: CameraManagerDelegate {
     func cameraManager(_ manager: CameraManager, didEncounterError error: Error) {
         AppLogger.error("Camera error", error: error, category: AppLogger.general)
         DispatchQueue.main.async {
-            self.conversionError = "Camera error: \(error.localizedDescription)"
+            self.conversionError = String(
+                format: NSLocalizedString("error_camera_general", comment: "Camera error: %@"),
+                error.localizedDescription)
         }
     }
 }
