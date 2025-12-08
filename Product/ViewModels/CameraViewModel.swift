@@ -21,7 +21,7 @@ class CameraViewModel: NSObject, ObservableObject {
     @Published var conversionError: String?
     @Published var isConversionEnabled = false  // Controls whether detection happens
     @Published var isSessionRunning = false  // Camera session status
-    @Published var isSizeFilterEnabled = true  // Controls size filtering (height > 1/10)
+    @Published var isSizeFilterEnabled = false  // Controls size filtering (height > 1/10)
     @Published var isThrottlingEnabled = false  // Controls frame processing throttling
 
     // MARK: - Private Properties
