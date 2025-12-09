@@ -12,8 +12,8 @@ struct PhotoScanView: View {
     @Environment(\.appState) var appState
     @StateObject private var viewModel: PhotoScanViewModel
     
-    init(appState: AppState = AppState()) {
-        _viewModel = StateObject(wrappedValue: PhotoScanViewModel(appState: appState))
+    init(appState: AppState, storageService: StorageService = StorageService()) {
+        _viewModel = StateObject(wrappedValue: PhotoScanViewModel(appState: appState, storageService: storageService))
     }
     
     var body: some View {
@@ -44,7 +44,7 @@ struct PhotoScanView: View {
                         .scaleEffect(1.5)
                         .tint(.white)
                     
-                    Text("正在識別照片...")
+                    Text("processing_photo")
                         .font(.headline)
                         .foregroundColor(.white)
                 }
@@ -93,12 +93,12 @@ struct PhotoScanView: View {
                 .font(.system(size: 80))
                 .foregroundColor(.gray)
             
-            Text("選擇照片開始掃描")
+            Text("select_photo_to_scan")
                 .font(.title2)
                 .fontWeight(.semibold)
                 .foregroundColor(.white)
             
-            Text("從相簿中選擇包含價格的照片")
+            Text("select_photo_subtitle")
                 .font(.body)
                 .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
@@ -154,36 +154,22 @@ struct PhotoScanView: View {
                             .foregroundColor(.gray)
                     }
 
-                    // Action Buttons
-                    HStack(spacing: 12) {
-                        Button(action: viewModel.saveCurrentResult) {
-                            Text("save_result")
+                    // Action Button - Select another photo
+                    PhotosPicker(
+                        selection: $viewModel.selectedPhoto,
+                        matching: .images
+                    ) {
+                        HStack(spacing: 8) {
+                            Image(systemName: "photo")
+                                .font(.system(size: 16))
+                            Text("reselect_photo")
                                 .font(.headline)
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 14)
-                                .background(Color.blue)
-                                .cornerRadius(8)
                         }
-                        
-                        // Photo Picker Button (smaller, inline)
-                        PhotosPicker(
-                            selection: $viewModel.selectedPhoto,
-                            matching: .images
-                        ) {
-                            HStack(spacing: 6) {
-                                Image(systemName: "photo")
-                                    .font(.system(size: 16))
-                                Text("重新選擇")
-                                    .font(.subheadline)
-                                    .fontWeight(.semibold)
-                            }
-                            .foregroundColor(.white)
-                            .padding(.vertical, 14)
-                            .padding(.horizontal, 16)
-                            .background(Color.gray.opacity(0.6))
-                            .cornerRadius(8)
-                        }
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 14)
+                        .background(Color.blue)
+                        .cornerRadius(8)
                     }
                 }
                 .padding()
@@ -208,7 +194,7 @@ struct PhotoScanView: View {
                         HStack(spacing: 8) {
                             Image(systemName: "photo.on.rectangle")
                                 .font(.system(size: 18))
-                            Text("重新選擇照片")
+                            Text("reselect_photo")
                                 .font(.system(size: 16, weight: .semibold))
                         }
                         .foregroundColor(.white)
@@ -230,11 +216,11 @@ struct PhotoScanView: View {
                             .font(.system(size: 32))
                             .foregroundColor(.gray)
                         
-                        Text("點擊下方按鈕選擇照片")
+                        Text("tap_button_to_select_photo")
                             .font(.caption)
                             .foregroundColor(.gray)
                     } else {
-                        Text("正在偵測照片中的價格...")
+                        Text("detecting_price_in_photo")
                             .font(.caption)
                             .foregroundColor(.gray)
                     }
@@ -246,6 +232,7 @@ struct PhotoScanView: View {
             
             // Main Photo Picker Button (always visible at bottom)
             if viewModel.latestResult == nil && viewModel.conversionError == nil {
+                let hasImage = viewModel.selectedImage != nil
                 PhotosPicker(
                     selection: $viewModel.selectedPhoto,
                     matching: .images
@@ -253,7 +240,7 @@ struct PhotoScanView: View {
                     HStack(spacing: 8) {
                         Image(systemName: "photo.on.rectangle")
                             .font(.system(size: 20))
-                        Text(viewModel.selectedImage == nil ? "選擇照片" : "重新選擇")
+                        Text(hasImage ? "reselect" : "select_photo")
                             .font(.system(size: 18, weight: .semibold))
                     }
                     .foregroundColor(.white)
@@ -294,6 +281,7 @@ struct PhotoScanView: View {
 // MARK: - Preview
 
 #Preview {
-    PhotoScanView()
-        .environment(\.appState, AppState())
+    let appState = AppState()
+    PhotoScanView(appState: appState)
+        .environment(\.appState, appState)
 }
