@@ -41,8 +41,9 @@ extension Decimal {
     /// - Parameter places: Number of decimal places (default: 2)
     /// - Returns: Rounded Decimal
     func rounded(to places: Int = 2) -> Decimal {
-        let divisor = Decimal(pow(10, Double(places)))
-        let rounded = (self * divisor).rounded() / divisor
+        var result = self
+        var rounded = Decimal()
+        NSDecimalRound(&rounded, &result, places, .plain)
         return rounded
     }
 

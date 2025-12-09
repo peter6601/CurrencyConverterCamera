@@ -194,7 +194,7 @@ class CameraManager: NSObject, ObservableObject {
 
             // Set connection
             if let connection = videoOutput.connection(with: .video) {
-                connection.videoOrientation = .portrait
+                connection.videoRotationAngle = 90.0 // Portrait orientation
             }
 
             AppLogger.debug("Video output added to session", category: AppLogger.general)

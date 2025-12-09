@@ -194,6 +194,8 @@ class PhotoScanViewModel: ObservableObject {
     }
 
     // MARK: - Result Saving
+    // TODO: 未來功能 - 歷史紀錄
+    // 目前此功能尚未在 UI 中啟用，將在未來版本中加入歷史紀錄功能時使用
 
     func saveCurrentResult() {
         guard let result = latestResult else {
@@ -237,7 +239,6 @@ class PhotoScanViewModel: ObservableObject {
 
     deinit {
         processingTask?.cancel()
-        AppLogger.debug("PhotoScanViewModel deallocated", category: AppLogger.general)
     }
 }
 

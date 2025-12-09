@@ -31,16 +31,7 @@ struct DetectionOverlayView: View {
                 var path = Path()
                 path.addRect(boundingBox)
 
-                let confidence: Double
-                if let number = detection.confidence as? NSNumber {
-                    confidence = number.doubleValue
-                } else if let decimal = detection.confidence as? Decimal {
-                    confidence = NSDecimalNumber(decimal: decimal).doubleValue
-                } else if let doubleValue = detection.confidence as? Double {
-                    confidence = doubleValue
-                } else {
-                    confidence = 0.0
-                }
+                let confidence = detection.confidence
                 let color = confidenceColor(confidence)
 
                 context.stroke(
@@ -174,7 +165,6 @@ struct DetectionOverlayView: View {
         confidence: 0.85
     )
 
-    let avgConfidence: Double = 0.85
     let frame = CameraFrame(
         size: CGSize(width: 375, height: 812),
         detectedNumbers: [detection]
