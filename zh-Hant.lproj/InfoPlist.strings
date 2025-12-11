@@ -1,0 +1,28 @@
+/* 
+  InfoPlist.strings
+  CurrencyConverterCamera
+
+  Created by 丁暐哲 on 2025/12/11.
+  
+*/
+/* Camera permission */
+"NSCameraUsageDescription" = "需要使用相機掃描並識別價格以進行貨幣轉換。";
+
+/* Photo Library permission */
+"NSPhotoLibraryUsageDescription" = "需要存取照片庫以選擇圖片進行價格識別。";
+```
+
+## 重點說明
+
+1. **Key 必須是 Info.plist 中的完整 key 名稱**
+   - `NSCameraUsageDescription` 對應 "Privacy - Camera Usage Description"
+   - `NSPhotoLibraryUsageDescription` 對應 "Privacy - Photo Library Usage Description"
+
+2. **格式**
+```
+   "Key名稱" = "翻譯文字";
+```
+
+3. **註解是選擇性的**
+```
+   /* 這是註解，幫助你記住這個 key 的用途 */

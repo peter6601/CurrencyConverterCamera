@@ -1,0 +1,12 @@
+/* 
+  InfoPlist.strings
+  CurrencyConverterCamera
+
+  Created by 丁暐哲 on 2025/12/11.
+  
+*/
+/* Camera permission */
+"NSCameraUsageDescription" = "We need camera access to scan and identify prices for currency conversion.";
+
+/* Photo Library permission */
+"NSPhotoLibraryUsageDescription" = "We need photo library access to select images for price recognition.";
