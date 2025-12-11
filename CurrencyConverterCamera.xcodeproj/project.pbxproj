@@ -48,6 +48,7 @@
 		2DF736D02EE741F2000CCE2E /* PhotoScanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF736CF2EE741F2000CCE2E /* PhotoScanViewModel.swift */; };
 		2DF736D22EE74217000CCE2E /* PhotoScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF736D12EE74217000CCE2E /* PhotoScanView.swift */; };
 		2DF736D42EE745DB000CCE2E /* PriceFilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF736D32EE745DB000CCE2E /* PriceFilterService.swift */; };
+		2DF7370D2EEAD1FB000CCE2E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2DF7370B2EEAD1FB000CCE2E /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,8 @@
 		2DF736CF2EE741F2000CCE2E /* PhotoScanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoScanViewModel.swift; sourceTree = "<group>"; };
 		2DF736D12EE74217000CCE2E /* PhotoScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoScanView.swift; sourceTree = "<group>"; };
 		2DF736D32EE745DB000CCE2E /* PriceFilterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceFilterService.swift; sourceTree = "<group>"; };
+		2DF7370C2EEAD1FB000CCE2E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2DF7370E2EEAD221000CCE2E /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +257,7 @@
 		2DE15DD22EDF344A006EDD45 = {
 			isa = PBXGroup;
 			children = (
+				2DF7370B2EEAD1FB000CCE2E /* InfoPlist.strings */,
 				2DA87E2B2EE2B9DE00C32679 /* CurrencyConverterCamera.xctestplan */,
 				2DA87CB52EE0012200C32679 /* Product */,
 				2DA87D212EE0018A00C32679 /* CurrencyConverterCameraTests */,
@@ -371,6 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DA87E312EE2D88900C32679 /* WARNING_FIXES_SUMMARY.md in Resources */,
+				2DF7370D2EEAD1FB000CCE2E /* InfoPlist.strings in Resources */,
 				2DA87CCB2EE0012200C32679 /* Assets.xcassets in Resources */,
 				2DF736CE2EE6D76E000CCE2E /* Localizable.xcstrings in Resources */,
 			);
@@ -466,6 +471,18 @@
 			targetProxy = 2DE15DF32EDF344C006EDD45 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2DF7370B2EEAD1FB000CCE2E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2DF7370C2EEAD1FB000CCE2E /* en */,
+				2DF7370E2EEAD221000CCE2E /* zh-Hant */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		2DE15DFA2EDF344C006EDD45 /* Debug */ = {
@@ -598,12 +615,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = QD39SW5YJ4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
-				INFOPLIST_KEY_NSCameraUsageDescription = "需要相機權限才能顯示";
+				INFOPLIST_KEY_NSCameraUsageDescription = camera_access_approve_des;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "需要";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -635,12 +653,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = QD39SW5YJ4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
-				INFOPLIST_KEY_NSCameraUsageDescription = "需要相機權限才能顯示";
+				INFOPLIST_KEY_NSCameraUsageDescription = camera_access_approve_des;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "需要";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
