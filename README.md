@@ -19,9 +19,9 @@ CurrencyConverterCamera 是一款專為旅行者設計的 iOS應用程式，利�
 
 ## 系統需求 (Requirements)
 
-*   **iOS 版本**：iOS 15.0 或以上
+*   **iOS 版本**：iOS 17.0 或以上
 *   **裝置**：iPhone (支援相機功能)
-*   **開發環境**：Xcode 14+
+*   **開發環境**：Xcode 26+
 *   **語言**：Swift 5+ (SwiftUI + UIKit)
 
 ## 安裝與執行 (Installation & Usage)
